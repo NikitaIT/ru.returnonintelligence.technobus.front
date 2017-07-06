@@ -30,12 +30,12 @@
 
 <body>
 
-	<div class="container">
+<!--	<div class="container">
 		<div class="row">
 			<div class="col-sm-6">
                 <div class="row">
                     <div class="checkbox-container">
-                        <!-- value="1" for checked, 0 for unchecked -->
+                        <!-- value="1" for checked, 0 for unchecked 
                         <input type="hidden" id="on-off-switch-notext" value="0">
                     </div>
                     Автобусы технополис
@@ -54,11 +54,33 @@
                 <script type="text/javascript">
                     
                 </script>
-<!-- Demo 2-->
             </div>
 		</div>
 
-	</div>
+	</div>-->
+    
+    <div class="main-window">
+        <div class="language-box">
+            <h>Язык</h>
+            <input type="checkbox" checked >
+        </div>
+        <h>Расписание автобусов</h>
+        <div class="current-time">
+            <h>Текущее время:</h>
+            <div id="time">10:25</div>
+        </div>
+        <div class="table">
+        </div>
+        <div class="map">
+           <h>Место</h>
+            <div id="map"></div>
+            <div id="map-text">
+                <p> На остановке в назначенное время вас ждет БЕСПЛАТНЫЙ автобус с табличкой 
+                </p>
+                <img class="technopolis-picture" src="img/technopolis.jpg">          
+            </div>
+        </div>
+    </div>
 	
 	<link rel="stylesheet" href="css/main.min.css">
 	<script src="js/scripts.min.js"></script>
