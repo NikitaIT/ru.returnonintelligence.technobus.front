@@ -4,8 +4,8 @@ $(function () {
 	});
 	new DG.OnOffSwitch({
 		el: '#on-off-switch',
-		textOn: 'Sync On',
-		textOff: 'Off',
+		textOn: 'Ru',
+		textOff: 'En',
 		listener: function (name, checked) {
 			$("#listener-text").html("Listener called for " + name + ", checked: " + checked);
 		}
