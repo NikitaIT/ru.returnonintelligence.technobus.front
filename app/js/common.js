@@ -1,3 +1,4 @@
+///переключатели
 $(function () {
 	new DG.OnOffSwitch({
 		el: '#on-off-switch-notext'
@@ -11,6 +12,7 @@ $(function () {
 		}
 	});
 });
+///вывод текущей даты
 $(function () {
 	function setDate() {
 			var date = new Date();
@@ -25,6 +27,7 @@ $(function () {
 	setDate();
 	setInterval(setDate,1000);
 });
+/// Отрисовка карты
 $(function () {
 	function init() {
 		var myMap = new ymaps.Map('map', {
@@ -48,4 +51,71 @@ $(function () {
 			});
 	}
 	ymaps.ready(init);
+});
+//заполнение таблицы
+$(function () {
+//	$.ajax({
+//	  dataType: 'json',
+//	  url: 'response.php?action=sample5',
+//	  success: function(jsondata){
+//		$('.results').html('Name = ' + jsondata.name + ', Nickname = ' + jsondata.nickname);
+//	  }
+//	});
+ 
+ var jsonString =                      
+    {"Расписание":
+     [{
+      "ThenGo": "Oт метро",
+	  "tr": [                             
+		{
+          "hover": 8,
+		  "td": [{"min":10,"dayOfWeek":"ПТ"},
+                {"min":10,"dayOfWeek":"ПТ"}]
+		},
+		{
+          "hover": 9,
+		  "td": [{"min":10,"dayOfWeek":"ПТ"},
+                {"min":10,"dayOfWeek":"ПТ"}]
+		}
+      ]
+     },
+      {
+      "ThenGo": "К метро",
+	  "tr": [                             
+		{
+          "hover": 8,
+		  "td": [{"min":10,"dayOfWeek":"ПТ"},
+                {"min":10,"dayOfWeek":"ПТ"}]
+		},
+		{
+          "hover": 9,
+		  "td": [{"min":10,"dayOfWeek":"ПТ"},
+                {"min":10,"dayOfWeek":"ПТ"}]
+		}
+      ]}
+     ]};
+
+	//	var cart = JSON.parse(jsonString );
+	var timetableJSON =  jsonString;
+	var timetable = $("table.timetable")
+	var string = "";
+	function compareNumeric(a, b) {
+		  return a - b;
+		}
+	timetableJSON.Расписание.forEach(function (item, i, arr) {
+		string += '<tr><th class="timetable__header">' + item.ThenGo + '</th></tr>';
+		item.tr.forEach(function (item2, i, arr) {
+			string += '<tr style="background-color:silver" class="timetable__row">' +
+				'<td class="timetable__hover">' +
+				item2.hover +
+				'</td>';
+			item2.td.forEach(function (item3, i, arr) {
+				string += '<td style="background-color:orange" class="timetable__min ' +
+					item3.dayOfWeek + '">' +
+					item3.min + '</td>';
+			});
+			string += '</tr>';
+		});
+	});
+		timetable.append(string);
 });
