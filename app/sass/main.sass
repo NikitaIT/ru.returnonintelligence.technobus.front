@@ -2,6 +2,7 @@
 @import "libs"
 @import "vars"
 @import "components/switch"
+@import "components/map"
 
 *::-webkit-input-placeholder
 	color: #666
@@ -38,9 +39,12 @@ body
 	overflow-x: hidden
 	opacity: 1
 
-.img-responsive
-	display: block
-	max-width: 100%
-	height: auto
+.main
+	height: 100vh
+	&__contant
+		height: 100%
+
+.highlighter-rouge
+	text-transform: uppercase
 
 @import "media" // Всегда в конце
