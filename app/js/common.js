@@ -94,9 +94,39 @@ $(function () {
 		}
       ]}
      ]};
+	for(var i=8;i<21;i++){
+		var j = 10;
+		jsonString.Расписание[0].tr.push({
+          "hover": i,
+		  "td": [{"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"},
+                {"min":j++,"dayOfWeek":"ПТ"}]
+		});
+	}
 
 	
 	//	var cart = JSON.parse(jsonString );
+//	commit 
 	var timetableJSON =  jsonString;
 	var timetable = $(".timetable")
 	var string = "";
@@ -119,19 +149,60 @@ $(function () {
 //		});
 //	});
 	timetableJSON.Расписание.forEach(function (item, i, arr) {
-		string += '<div><div class="timetable__header">' + item.ThenGo + '</div></div>';
+		string += '<div class="timetable__row"><div class="timetable__header">' + item.ThenGo + '</div></div>';
 		item.tr.forEach(function (item2, i, arr) {
-			string += '<div style="background-color:silver" class="timetable__row">' +
+			string += '<div class="timetable__row">' +
 				'<div class="timetable__hover">' +
 				item2.hover +
-				'</div>';
+				'</div><div class="timetable__row--subrow">';
 			item2.td.forEach(function (item3, i, arr) {
 				string += '<div style="background-color:orange" class="timetable__min ' +
 					item3.dayOfWeek + '">' +
 					item3.min + '</div>';
 			});
-			string += '</div>';
+			string += '</div></div>';
 		});
 	});
 	timetable.append(string);
+});
+
+$(function() {
+		$('.timetable__row--subrow').slick({
+			arrows: false,
+			dots: false,
+			infinite: false,
+			variableWidth: true,
+			speed: 200,
+			slidesToScroll: 5,
+			responsive: [
+				{
+				  breakpoint: 1024,
+				  settings: {
+					variableWidth: false,
+					slidesToShow: 6,
+					slidesToScroll: 4
+				  }
+				},
+				{
+				  breakpoint: 600,
+				  settings: {
+					variableWidth: false,
+					slidesToShow: 5,
+					slidesToScroll: 3
+				  }
+				},
+				{
+				  breakpoint: 480,
+				  settings: {
+					variableWidth: false,
+					slidesToShow: 4,
+					slidesToScroll: 3
+				  }
+				}
+			 ]
+	});
+});
+
+$(function() {  
+    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});
 });
