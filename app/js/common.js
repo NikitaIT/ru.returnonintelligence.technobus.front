@@ -95,6 +95,7 @@ $(function () {
       ]}
      ]};
 
+	
 	//	var cart = JSON.parse(jsonString );
 	var timetableJSON =  jsonString;
 	var timetable = $(".timetable")
