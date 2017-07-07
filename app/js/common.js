@@ -97,25 +97,40 @@ $(function () {
 
 	//	var cart = JSON.parse(jsonString );
 	var timetableJSON =  jsonString;
-	var timetable = $("table.timetable")
+	var timetable = $(".timetable")
 	var string = "";
 	function compareNumeric(a, b) {
 		  return a - b;
 		}
+//	timetableJSON.Расписание.forEach(function (item, i, arr) {
+//		string += '<tr><th class="timetable__header">' + item.ThenGo + '</th></tr>';
+//		item.tr.forEach(function (item2, i, arr) {
+//			string += '<tr style="background-color:silver" class="timetable__row">' +
+//				'<td class="timetable__hover">' +
+//				item2.hover +
+//				'</td>';
+//			item2.td.forEach(function (item3, i, arr) {
+//				string += '<td style="background-color:orange" class="timetable__min ' +
+//					item3.dayOfWeek + '">' +
+//					item3.min + '</td>';
+//			});
+//			string += '</tr>';
+//		});
+//	});
 	timetableJSON.Расписание.forEach(function (item, i, arr) {
-		string += '<tr><th class="timetable__header">' + item.ThenGo + '</th></tr>';
+		string += '<div><div class="timetable__header">' + item.ThenGo + '</div></div>';
 		item.tr.forEach(function (item2, i, arr) {
-			string += '<tr style="background-color:silver" class="timetable__row">' +
-				'<td class="timetable__hover">' +
+			string += '<div style="background-color:silver" class="timetable__row">' +
+				'<div class="timetable__hover">' +
 				item2.hover +
-				'</td>';
+				'</div>';
 			item2.td.forEach(function (item3, i, arr) {
-				string += '<td style="background-color:orange" class="timetable__min ' +
+				string += '<div style="background-color:orange" class="timetable__min ' +
 					item3.dayOfWeek + '">' +
-					item3.min + '</td>';
+					item3.min + '</div>';
 			});
-			string += '</tr>';
+			string += '</div>';
 		});
 	});
-		timetable.append(string);
+	timetable.append(string);
 });

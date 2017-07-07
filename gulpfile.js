@@ -28,7 +28,8 @@ gulp.task('common-js', function() {
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
-        
+		'app/libs/jquery-migrate/jquery-migrate.min.js',
+		'app/libs/slick/dist/slick.js',
         'app/libs/on-off-switch/on-off-switch.js',
         'app/libs/on-off-switch/on-off-switch-onload.js',
 		'app/js/common.min.js', // Всегда в конце
