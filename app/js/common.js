@@ -31,8 +31,8 @@ $(function () {
 $(function () {
 	function init() {
 		var myMap = new ymaps.Map('map', {
-				center: [55.755773, 37.617761],
-				zoom: 9
+				center: [59.853876, 30.321102],
+				zoom: 16
 			}, {
 				searchControlProvider: 'yandex#search'
 			}),
