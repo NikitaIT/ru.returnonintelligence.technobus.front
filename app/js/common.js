@@ -68,12 +68,12 @@ $(function () {
       "ThenGo": "K Technopolis",
 	  "tr": [                             
 		{
-          "hover": 8,
+          "hover": 7,
 		  "td": [{"min":10,"dayOfWeek":"ПТ"},
                 {"min":10,"dayOfWeek":"ПТ"}]
 		},
 		{
-          "hover": 9,
+          "hover": 8,
 		  "td": [{"min":10,"dayOfWeek":"ПТ"},
                 {"min":10,"dayOfWeek":"ПТ"}]
 		}
@@ -83,18 +83,18 @@ $(function () {
       "ThenGo": "От Technopolis",
 	  "tr": [                             
 		{
-          "hover": 8,
+          "hover": 7,
 		  "td": [{"min":10,"dayOfWeek":"ПТ"},
                 {"min":10,"dayOfWeek":"ПТ"}]
 		},
 		{
-          "hover": 9,
+          "hover": 8,
 		  "td": [{"min":10,"dayOfWeek":"ПТ"},
                 {"min":10,"dayOfWeek":"ПТ"}]
 		}
       ]}
      ]};
-	for(var i=8;i<21;i++){
+	for(var i=9;i<19;i++){
 		var j = 10;
 		jsonString.Расписание[0].tr.push({
           "hover": i,
@@ -149,14 +149,14 @@ $(function () {
 //		});
 //	});
 	timetableJSON.Расписание.forEach(function (item, i, arr) {
-		string += '<div class="timetable__row"><div class="timetable__header__row"><div class="timetable__header">' + item.ThenGo + '</div></div></div><div class="timetable__row__all">';
+		string += '<div class="timetable__row"><div class="timetable__header__row"><div class="timetable__header" id="to">' + item.ThenGo + '</div><div class="timetable__header" id="from">'+item.ThenGo+'</div></div></div><div class="timetable__row__all">';
 		item.tr.forEach(function (item2, i, arr) {
 			string += '<div class="timetable__row">' +
 				'<div class="timetable__hover " style="background: #FF9101">' +
 				item2.hover +
 				'</div><div class="timetable__row--subrow">';
 			item2.td.forEach(function (item3, i, arr) {
-				string += '<div style="background-color: #FFCC01;" class="timetable__min ' +
+				string += '<div  class="timetable__min ' +
 					item3.dayOfWeek + '">' +
 					item3.min + '</div>';
 			});
@@ -171,7 +171,7 @@ $(function() {
 		$('.timetable__row--subrow').slick({
 			arrows: false,
 			dots: false,
-			infinite: false,
+			infinite: true,
 			variableWidth: true,
 			speed: 200,
 			slidesToScroll: 5,
@@ -196,13 +196,34 @@ $(function() {
 				  breakpoint: 480,
 				  settings: {
 					variableWidth: false,
-					slidesToShow: 4,
+					slidesToShow: 7,
 					slidesToScroll: 3
 				  }
 				}
 			 ]
 	});
 });
+
+
+// Стили для переключения вкладок
+$(document).ready(function(){
+        $(".timetable__header").click(function(){ 
+            $(this).css('background', '#FEFCD7');
+            $(this).css('color', '#B23302');
+            if ($(this).attr('id')==='to')
+                {
+                    $("#from").css('background', '#FEDEB7');
+                    $("#from").css('color', '#D9A414');
+                }
+            else
+                {
+                    $("#to").css('background', '#FEDEB7');
+                    $("#to").css('color', '#D9A414');
+                }
+    });         
+})
+
+  
 
 //$(function() {  
 //    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});
