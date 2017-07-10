@@ -65,7 +65,7 @@ $(function () {
  var jsonString =                      
     {"Расписание":
      [{
-      "ThenGo": "Oт метро",
+      "ThenGo": "K Technopolis",
 	  "tr": [                             
 		{
           "hover": 8,
@@ -80,7 +80,7 @@ $(function () {
       ]
      },
       {
-      "ThenGo": "К метро",
+      "ThenGo": "От Technopolis",
 	  "tr": [                             
 		{
           "hover": 8,
@@ -149,20 +149,21 @@ $(function () {
 //		});
 //	});
 	timetableJSON.Расписание.forEach(function (item, i, arr) {
-		string += '<div class="timetable__row"><div class="timetable__header">' + item.ThenGo + '</div></div>';
+		string += '<div class="timetable__row"><div class="timetable__header__row"><div class="timetable__header">' + item.ThenGo + '</div></div></div><div class="timetable__row__all">';
 		item.tr.forEach(function (item2, i, arr) {
 			string += '<div class="timetable__row">' +
-				'<div class="timetable__hover">' +
+				'<div class="timetable__hover " style="background: #FF9101">' +
 				item2.hover +
 				'</div><div class="timetable__row--subrow">';
 			item2.td.forEach(function (item3, i, arr) {
-				string += '<div style="background-color:orange" class="timetable__min ' +
+				string += '<div style="background-color: #FFCC01;" class="timetable__min ' +
 					item3.dayOfWeek + '">' +
 					item3.min + '</div>';
 			});
 			string += '</div></div>';
 		});
 	});
+    string += '</div>';
 	timetable.append(string);
 });
 
@@ -203,6 +204,6 @@ $(function() {
 	});
 });
 
-$(function() {  
-    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});
-});
+//$(function() {  
+//    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});
+//});
