@@ -18,8 +18,12 @@ $(function () {
 ///вывод текущей даты
 $(function () {
 	function setDate() {
+    var options ={ 
+        hour: 'numeric', 
+        minute: 'numeric'
+    };
 			var date = new Date();
-			var time = date.getHours() + ':' + date.getMinutes() + ' ' + getWeekDay(date).toUpperCase();
+			var time = date.toLocaleString('ru',options) +' '+getWeekDay(date).toUpperCase();
 			$("time.current-time").html(time);
 
 			function getWeekDay(date) {
