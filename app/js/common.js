@@ -31,10 +31,16 @@ $(function () {
 	setInterval(setDate,1000);
 });
 /// Отрисовка карты
-$(function () {
+$(function() {
 	function init() {
+        var places = {
+            metro: [59.853876, 30.321102],
+            technopolis: [59.818043, 30.327938]
+        };
+        var currentTab=places.metro;
+
 		var myMap = new ymaps.Map('map', {
-				center: [59.853876, 30.321102],
+				center: currentTab,
 				zoom: 16
 			}, {
 				searchControlProvider: 'yandex#search'
@@ -53,7 +59,9 @@ $(function () {
 				e.get('target').options.unset('preset');
 			});
 	}
+    
 	ymaps.ready(init);
+    
 });
 
 
@@ -149,7 +157,7 @@ $(function () {
     timetableJSON.Расписание.forEach(function (item, i, arr) {
         string += '<div class="timetable__row__current" id="route'+i+'">';
 		item.tr.forEach(function (item2, i, arr) {
-            string += '<div class="timetable__row">' +
+            string += '<div class="timetable__row"><hr/>' +
 				'<div class="timetable__hover " style="background: #FF9101">' +
 				item2.hover +
 				'</div><div class="timetable__row--subrow">';
@@ -215,6 +223,7 @@ $(document).ready(function(){
                     $("#from").css('color', '#D9A414');
                     $("#route1").css('display', 'none');
                     $("#route0").css('display', 'block');
+
                     
                 }
             else
@@ -223,6 +232,7 @@ $(document).ready(function(){
                     $("#to").css('color', '#D9A414');
                     $("#route0").css('display', 'none');
                     $("#route1").css('display', 'block');
+                    
 
                 }
     }); 

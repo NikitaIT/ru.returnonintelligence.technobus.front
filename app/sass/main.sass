@@ -64,12 +64,14 @@ body
 .timetable
 	user-select: none
 	width: 750px
-	height: 641px
+	height: auto
 	contain: content
 	overflow-x: hidden
 
 	&__row
 		white-space: nowrap
+        max-width: 750px
+        width: auto
 		&--subrow
 	    display: inline-block
 	    width: 100%
@@ -80,6 +82,7 @@ body
 .timetable
     background: #FEFCD7
     overflow-y: hidden
+    min-height: 500px
             
 
 .timetable__row
@@ -91,12 +94,14 @@ body
 
 .timetable__header__row
     background: #FEDEB7
-    width: 750px
+    max-width: 750px
+    width: auto
    
     
 .timetable__hover
     width: 60px
     height: 28px
+    overflow: hidden
 
 
     
@@ -115,6 +120,7 @@ body
     font-family: Segoe UI
     font-size: 18px
     font-weight: 900
+
     
 
 
@@ -143,17 +149,29 @@ body
     background: #FEFCD7
     color: #B23302
 
-.timetable__hover:after
-    content: ""
-    display: inline-block
-    vertical-align: middle
-    margin-right: -100%
-    width: 60px
-    height: 1px
-    background-color: #000
-    position: relative
+//.timetable__hover:after
+//    content: ""
+//    display: inline-block
+//    vertical-align: middle
+//    margin-right: -100%
+//    width: 60px
+//    height: 1px
+//    background-color: #000
+//    position: relative
 
 #route1
     display: none
-    
+
+.col-sm-6
+    width: auto
+    margin-left: 1%
+.row.main
+    padding: 0 0 0 40px
+.container,.row
+    width: auto
+hr
+    border-color: #000
+    margin: 1% 0 0 0
+    vertical-align: center
+    width: 20%
 @import "media" // Всегда в конце
