@@ -67,11 +67,11 @@ body
 	height: auto
 	contain: content
 	overflow-x: hidden
+    
 
 	&__row
 		white-space: nowrap
         max-width: 750px
-        width: auto
 		&--subrow
 	    display: inline-block
 	    width: 100%
@@ -83,7 +83,8 @@ body
     background: #FEFCD7
     overflow-y: hidden
     min-height: 500px
-            
+    width: 100%   
+
 
 .timetable__row
     background: #FEFCD7
@@ -127,10 +128,7 @@ body
 .timetable__row__all
     margin: 7% 3%
     
-.timetable__row--subrow
-    margin-left: 60px
 
-    
 .timetable__header:hover
     cursor: pointer
 //    background: #FEFCD7
@@ -166,12 +164,22 @@ body
     width: auto
     margin-left: 1%
 .row.main
-    padding: 0 0 0 40px
-.container,.row
+    padding: 0 0 0 3%
+.container,.row,.checkbox-container
     width: auto
+
+    
+.container,.row
+    margin: 0px
+    max-width: 1349px
+
+.row
+    max-width: 750px 
 hr
     border-color: #000
-    margin: 1% 0 0 0
-    vertical-align: center
-    width: 20%
+    width: 60px
+    display: inline-block
+    height: 14px
+    overflow: hidden
+    margin: 0
 @import "media" // Всегда в конце

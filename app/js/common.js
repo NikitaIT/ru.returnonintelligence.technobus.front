@@ -157,10 +157,10 @@ $(function () {
     timetableJSON.Расписание.forEach(function (item, i, arr) {
         string += '<div class="timetable__row__current" id="route'+i+'">';
 		item.tr.forEach(function (item2, i, arr) {
-            string += '<div class="timetable__row"><hr/>' +
+            string += '<div class="timetable__row">' +
 				'<div class="timetable__hover " style="background: #FF9101">' +
 				item2.hover +
-				'</div><div class="timetable__row--subrow">';
+				'</div><hr/><div class="timetable__row--subrow">';
 			item2.td.forEach(function (item3, i, arr) {
 				string += '<div  class="timetable__min ' +
 					item3.dayOfWeek + '">' +item2.hover+":"+
