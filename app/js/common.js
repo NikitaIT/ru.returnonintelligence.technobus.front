@@ -12,6 +12,9 @@ $(function () {
 		}
 	});
 });
+
+
+
 ///вывод текущей даты
 $(function () {
 	function setDate() {
@@ -52,6 +55,8 @@ $(function () {
 	}
 	ymaps.ready(init);
 });
+
+
 //заполнение таблицы
 $(function () {
 //	$.ajax({
@@ -148,9 +153,12 @@ $(function () {
 //			string += '</tr>';
 //		});
 //	});
-	timetableJSON.Расписание.forEach(function (item, i, arr) {
-		string += '<div class="timetable__row"><div class="timetable__header__row"><div class="timetable__header" id="to">' + item.ThenGo + '</div><div class="timetable__header" id="from">'+item.ThenGo+'</div></div></div><div class="timetable__row__all">';
-		item.tr.forEach(function (item2, i, arr) {
+	//timetableJSON.Расписание.forEach(function (item, i, arr) {
+
+    var id=$(".timetable").attr('id');
+    string += '<div class="timetable__row"><div class="timetable__header__row"><div class="timetable__header" id="to">';
+    string += timetableJSON.Расписание[0].ThenGo + '</div><div class="timetable__header" id="from">'+timetableJSON.Расписание[1].ThenGo+'</div></div></div><div class="timetable__row__all">';
+		timetableJSON.Расписание[id].tr.forEach(function (item2, i, arr) {
 			string += '<div class="timetable__row">' +
 				'<div class="timetable__hover " style="background: #FF9101">' +
 				item2.hover +
@@ -162,9 +170,10 @@ $(function () {
 			});
 			string += '</div></div>';
 		});
-	});
+
     string += '</div>';
 	timetable.append(string);
+
 });
 
 $(function() {
@@ -204,8 +213,7 @@ $(function() {
 	});
 });
 
-
-// Стили для переключения вкладок
+ // Стили для переключения вкладок
 $(document).ready(function(){
         $(".timetable__header").click(function(){ 
             $(this).css('background', '#FEFCD7');
@@ -214,14 +222,20 @@ $(document).ready(function(){
                 {
                     $("#from").css('background', '#FEDEB7');
                     $("#from").css('color', '#D9A414');
+                    $(".timetable").attr('id',"0");
+                    
                 }
             else
                 {
                     $("#to").css('background', '#FEDEB7');
                     $("#to").css('color', '#D9A414');
+                    $(".timetable").attr('id',"1");
+
                 }
-    });         
-})
+    }); 
+    
+}) 
+
 
   
 

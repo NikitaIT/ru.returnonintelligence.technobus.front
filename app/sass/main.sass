@@ -98,6 +98,7 @@ body
     width: 72px
     height: 30px
 
+
     
 .timetable__header
     height: 59px
@@ -114,6 +115,7 @@ body
     font-family: Segoe UI
     font-size: 18px
     font-weight: 900
+    
 
 
 .timetable__row__all
@@ -123,10 +125,11 @@ body
     margin-left: 60px
 
     
-//.timetable__header:hover
+.timetable__header:hover
+    cursor: pointer
 //    background: #FEFCD7
 //    color: #B23302
-//    cursor: pointer
+    
     
 
 .slick-slide
@@ -140,6 +143,15 @@ body
     background: #FEFCD7
     color: #B23302
 
+.timetable__hover:after
+    content: ""
+    display: inline-block
+    vertical-align: middle
+    margin-right: -100%
+    width: 60px
+    height: 1px
+    background-color: #000
+    position: relative
 
     
     
