@@ -71,7 +71,7 @@ body
 
 	&__row
 		white-space: nowrap
-        max-width: 750px
+
 		&--subrow
 	    display: inline-block
 	    width: 100%
@@ -83,7 +83,8 @@ body
     background: #FEFCD7
     overflow-y: hidden
     min-height: 500px
-    width: 101%   
+    width: 101%
+    max-width: 750px 
 
 
 .timetable__row
@@ -164,19 +165,32 @@ body
     display: none
 
 .col-sm-6
-    width: 100%
     display: inline-block
+    width: 100%
+    height: 100%
+    
+#maps
+    max-width: 500px
+    
+    
+
+#table
+    max-width: 755px
+    height: auto
     
 .container,.row,.checkbox-container
     width: auto
 
     
-.container,.row
+.container
     margin: 0px
     max-width: 1349px
 
 .row
-    max-width: 750px 
+    margin: 0px
+//max-width: 750px 
+
+
 hr
     border-color: #000
     width: 7%
@@ -184,4 +198,7 @@ hr
     height: 14px
     overflow: hidden
     margin: 0
+
+p
+    margin-top: 0
 @import "media" // Всегда в конце
