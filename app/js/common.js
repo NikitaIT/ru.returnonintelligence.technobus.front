@@ -74,12 +74,11 @@ $(function () {
 	  "tr": [                             
 		{
           "hover": 7,
-		  "td": [{"min":10,"dayOfWeek":"ПТ"},
-                {"min":10,"dayOfWeek":"ПТ"}]
+		  "td": [{"min":45,"dayOfWeek":"ПТ"}]
 		},
 		{
           "hover": 8,
-		  "td": [{"min":10,"dayOfWeek":"ПТ"},
+		  "td": [{"min":0,"dayOfWeek":"ПТ"},
                 {"min":10,"dayOfWeek":"ПТ"}]
 		}
       ]
@@ -89,12 +88,12 @@ $(function () {
 	  "tr": [                             
 		{
           "hover": 7,
-		  "td": [{"min":10,"dayOfWeek":"ПТ"},
-                {"min":10,"dayOfWeek":"ПТ"}]
+		  "td": [{"min":45,"dayOfWeek":"ПТ"}
+                ]
 		},
 		{
           "hover": 8,
-		  "td": [{"min":10,"dayOfWeek":"ПТ"},
+		  "td": [{"min":0,"dayOfWeek":"ПТ"},
                 {"min":10,"dayOfWeek":"ПТ"}]
 		}
       ]}
@@ -104,17 +103,6 @@ $(function () {
 		jsonString.Расписание[0].tr.push({
           "hover": i,
 		  "td": [{"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
                 {"min":j++,"dayOfWeek":"ПТ"},
                 {"min":j++,"dayOfWeek":"ПТ"},
                 {"min":j++,"dayOfWeek":"ПТ"},
@@ -153,24 +141,27 @@ $(function () {
 //			string += '</tr>';
 //		});
 //	});
-	//timetableJSON.Расписание.forEach(function (item, i, arr) {
+	
 
-    var id=$(".timetable").attr('id');
+
     string += '<div class="timetable__row"><div class="timetable__header__row"><div class="timetable__header" id="to">';
     string += timetableJSON.Расписание[0].ThenGo + '</div><div class="timetable__header" id="from">'+timetableJSON.Расписание[1].ThenGo+'</div></div></div><div class="timetable__row__all">';
-		timetableJSON.Расписание[id].tr.forEach(function (item2, i, arr) {
-			string += '<div class="timetable__row">' +
+    timetableJSON.Расписание.forEach(function (item, i, arr) {
+        string += '<div class="timetable__row__current" id="route'+i+'">';
+		item.tr.forEach(function (item2, i, arr) {
+            string += '<div class="timetable__row">' +
 				'<div class="timetable__hover " style="background: #FF9101">' +
 				item2.hover +
 				'</div><div class="timetable__row--subrow">';
 			item2.td.forEach(function (item3, i, arr) {
 				string += '<div  class="timetable__min ' +
-					item3.dayOfWeek + '">' +
-					item3.min + '</div>';
+					item3.dayOfWeek + '">' +item2.hover+":"+
+                    String("0"+item3.min).substr(-2) + '</div>';
 			});
 			string += '</div></div>';
 		});
-
+        string += '</div>';
+    });
     string += '</div>';
 	timetable.append(string);
 
@@ -183,7 +174,7 @@ $(function() {
 			infinite: true,
 			variableWidth: true,
 			speed: 200,
-			slidesToScroll: 5,
+			slidesToScroll: 7,
 			responsive: [
 				{
 				  breakpoint: 1024,
@@ -198,7 +189,7 @@ $(function() {
 				  settings: {
 					variableWidth: false,
 					slidesToShow: 5,
-					slidesToScroll: 3
+					slidesToScroll: 4
 				  }
 				},
 				{
@@ -206,7 +197,7 @@ $(function() {
 				  settings: {
 					variableWidth: false,
 					slidesToShow: 7,
-					slidesToScroll: 3
+					slidesToScroll: 4
 				  }
 				}
 			 ]
@@ -222,14 +213,16 @@ $(document).ready(function(){
                 {
                     $("#from").css('background', '#FEDEB7');
                     $("#from").css('color', '#D9A414');
-                    $(".timetable").attr('id',"0");
+                    $("#route1").css('display', 'none');
+                    $("#route0").css('display', 'block');
                     
                 }
             else
                 {
                     $("#to").css('background', '#FEDEB7');
                     $("#to").css('color', '#D9A414');
-                    $(".timetable").attr('id',"1");
+                    $("#route0").css('display', 'none');
+                    $("#route1").css('display', 'block');
 
                 }
     }); 
