@@ -89,8 +89,8 @@ body
 
 .timetable__row
     background: #FEFCD7
-    height: 25px
-    margin-bottom: 10px
+    //height: auto
+    //margin-bottom: 10px
 
     
 
@@ -98,7 +98,8 @@ body
     background: #FEDEB7
     max-width: 750px
     width: auto
-    height: 40px
+    height: auto
+    min-height: 40px
    
     
 .timetable__hover
@@ -109,15 +110,17 @@ body
 
     
 .timetable__header
-    height: 100%
-    width: 30%
-    min-width: 50px
+    height: auto
+    min-height: 40px
+    width: auto
+    min-width: 25%
     color: #D9A414
     text-align: center
     font-family: Segoe UI
-    font-size: 130%
+    font-size: 120%
     display: inline-block
     font-weight: 500
+    padding: 0 2% 0 2%;
     
 .timetable__hover,.timetable__min
     text-align: center
@@ -126,11 +129,11 @@ body
     font-size: 18px
     font-weight: 900
 
-    
+
 
 
 .timetable__row__all
-    margin: 7% 3%
+    margin: 6% 3%
     
 
 .timetable__header:hover
@@ -145,7 +148,7 @@ body
     background: #FFCC01
     width: 60px
     height: 28px
-    margin-top: 10px
+    //margin-top: 10px
 
 #to
     background: #FEFCD7
@@ -162,7 +165,8 @@ body
 //    position: relative
 
 #route1
-    display: block
+    visibility: hidden
+    position: absolute				
 
 .col-sm-6
     display: inline-block
@@ -170,7 +174,7 @@ body
     height: 100%
     
 #maps
-    max-width: 500px
+    max-width: 535px
     
     
 
@@ -203,9 +207,16 @@ p
     margin-top: 0
     
 .current-time
-    color: #f2dc16
+    color: #B23302
     font-size: 120%
 
 .time
     margin-left: 3%
+
+.headline 
+    font-size: 120%
+
+.description-text
+    text-align: justify
+
 @import "media" // Всегда в конце
