@@ -110,7 +110,7 @@ $(function () {
 		}
       ]}
      ]};
-	for(var i=9;i<19;i++){
+	for(var i=9;i<23;i++){
 		var j = 10;
 		jsonString.Расписание[0].tr.push({
           "hover": i,
@@ -208,7 +208,7 @@ $(function() {
 				  breakpoint: 480,
 				  settings: {
 					variableWidth: false,
-					slidesToShow: 7,
+					slidesToShow: 4,
 					slidesToScroll: 4
 				  }
 				}
@@ -225,18 +225,21 @@ $(document).ready(function(){
                 {
                     $("#from").css('background', '#FEDEB7');
                     $("#from").css('color', '#D9A414');
-                    $("#route1").css('display', 'none');
-                    $("#route0").css('display', 'block');
-
-                    
+					$("#route0").css("visibility", "visible");
+    				$("#route0").css("position", "initial");
+                    $("#route1").css("visibility", "hidden");
+    				$("#route1").css("position", "absolute");
                 }
             else
                 {
                     $("#to").css('background', '#FEDEB7');
                     $("#to").css('color', '#D9A414');
-                    $("#route0").css('display', 'none');
-                    $("#route1").css('display', 'block');
-                    
+                    //$("#route0").css('display', 'none');
+                    //$("#route1").css('display', 'block');
+					$("#route0").css("visibility", "hidden");
+    				$("#route0").css("position", "absolute");
+                    $("#route1").css("visibility", "visible");
+    				$("#route1").css("position", "initial");
 
                 }
     }); 
