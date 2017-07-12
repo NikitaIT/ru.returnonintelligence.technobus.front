@@ -49,7 +49,7 @@ $(function() {
 			}, {
 				searchControlProvider: 'yandex#search'
 			}),
-			myPlacemark = new ymaps.Placemark(myMap.getCenter());
+		myPlacemark = new ymaps.Placemark(myMap.getCenter());
 
 		myMap.geoObjects.add(myPlacemark);
 
@@ -61,7 +61,20 @@ $(function() {
 			})
 			.add('mouseleave', function (e) {
 				e.get('target').options.unset('preset');
-			});
+			})
+        
+         $("#from").click(function(){ 
+             myMap.setCenter( places.technopolis);
+             myPlacemark.geometry.setCoordinates(myMap.getCenter());
+                
+         });
+        
+         $("#to").click(function(){ 
+              myMap.setCenter(places.metro);
+              myPlacemark.geometry.setCoordinates(myMap.getCenter());    
+         });
+
+        
 	}
     
 	ymaps.ready(init);
