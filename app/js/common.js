@@ -215,7 +215,16 @@ $(function() {
 			 ]
 	});
 });
-
+$(function() {
+	
+	//https://docs.google.com/spreadsheet/pub?key=0AtIDg8Wg2JCFdGdibXdnaWd2eVRRR2xVM0RlMU55ekE&output=html
+		var url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
+		var googleSpreadsheet = new GoogleSpreadsheet();
+		googleSpreadsheet.url(url);
+		googleSpreadsheet.load(function(result) {
+			$('#json').html(JSON.stringify(result));
+		});
+	});
  // Стили для переключения вкладок
 $(document).ready(function(){
         $(".timetable__header").click(function(){ 

@@ -29,6 +29,7 @@ gulp.task('js', ['common-js'], function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
 		'app/libs/jquery-migrate/jquery-migrate.min.js',
+		'app/libs/jquery-google-spreadsheet/jquery.google.spreadsheet.min.js',
 		'app/libs/slick-1.6.0/slick/slick.min.js',
 		'app/libs/jquery.nicescroll/dist/jquery.nicescroll.min.js',
         'app/libs/on-off-switch/on-off-switch.js',
