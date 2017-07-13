@@ -129,57 +129,60 @@ $(function () {
 		});
 	}
 
-	
-	//	var cart = JSON.parse(jsonString );
-//	commit 
-	var timetableJSON =  jsonString;
-	var timetable = $(".timetable")
-	var string = "";
-	function compareNumeric(a, b) {
-		  return a - b;
-		}
-//	timetableJSON.Расписание.forEach(function (item, i, arr) {
-//		string += '<tr><th class="timetable__header">' + item.ThenGo + '</th></tr>';
-//		item.tr.forEach(function (item2, i, arr) {
-//			string += '<tr style="background-color:silver" class="timetable__row">' +
-//				'<td class="timetable__hover">' +
-//				item2.hover +
-//				'</td>';
-//			item2.td.forEach(function (item3, i, arr) {
-//				string += '<td style="background-color:orange" class="timetable__min ' +
-//					item3.dayOfWeek + '">' +
-//					item3.min + '</td>';
-//			});
-//			string += '</tr>';
-//		});
-//	});
-	
 
-
-    string += '<div class="timetable__row"><div class="timetable__header__row"><div class="timetable__header" id="to">';
-    string += timetableJSON.Расписание[0].ThenGo + '</div><div class="timetable__header" id="from">'+timetableJSON.Расписание[1].ThenGo+'</div></div></div><div class="timetable__row__all">';
-    timetableJSON.Расписание.forEach(function (item, i, arr) {
-        string += '<div class="timetable__row__current" id="route'+i+'">';
-		item.tr.forEach(function (item2, i, arr) {
-            string += '<div class="timetable__row">' +
+	var url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
+		var googleSpreadsheet = new GoogleSpreadsheet();
+		
+		googleSpreadsheet.url(url);
+		
+		googleSpreadsheet.load(function(result) {
+			//$('#json').html(JSON.stringify(result));
+			console.log(result);
+			addTableList(result,".timetable__row__all",0);
+		});
+		var googleSpreadsheet = new GoogleSpreadsheet();
+		googleSpreadsheet.url(url+"&gid=1453141125");
+		googleSpreadsheet.load(function(result) {	
+			console.log(result);
+			//$('#json').html(JSON.stringify(result));
+			addTableList(result,".timetable__row__all",1);
+			initSlick();
+			tabSelect();
+		});
+	/*
+	Добавляет страницу таблицы
+	*/
+	function addTableList(timetableJSON,timetableRowClass,id) {
+		var string = "";
+		var mapMin = {"b":"00","c":"05","d":10, "e":15,"f":20,	"g":25,	"h":30,	"i":35,	"j":40, "k":45,	"l":50,	"m":55};
+		string += '<div class="timetable__row__current" id="route'+id+'">';
+		timetableJSON.items.forEach(function (item2, i, arr) {
+			var minHtmlString = getMinHtmlString(item2);
+			if(minHtmlString !== ""){
+				string += '<div class="timetable__row">' +
 				'<div class="timetable__hover " style="background: #FF9101">' +
-				item2.hover +
-				'</div><hr/><div class="timetable__row--subrow">';
-			item2.td.forEach(function (item3, i, arr) {
-				string += '<div  class="timetable__min ' +
-					item3.dayOfWeek + '">' +item2.hover+":"+
-                    String("0"+item3.min).substr(-2) + '</div>';
-			});
-			string += '</div></div>';
+				item2.id +
+				'</div><hr/><div class="timetable__row--subrow">'+
+				minHtmlString +
+				'</div></div>';
+			}
 		});
         string += '</div>';
-    });
-    string += '</div>';
-	timetable.append(string);
+		function getMinHtmlString(item2){
+			var string = "";
+			for (var item3 in item2) {
+				if(mapMin[item3]!==undefined){
+					string += '<div  class="timetable__min day' +
+					item2[item3] + '">' +item2.id+":"+
+                    mapMin[item3] + '</div>';
+				}
+			}
+			return string;
+		}
+		$(timetableRowClass).append(string);
+	}
 
-});
-
-$(function() {
+function initSlick() {
 		$('.timetable__row--subrow').slick({
 			arrows: false,
 			dots: false,
@@ -214,19 +217,9 @@ $(function() {
 				}
 			 ]
 	});
-});
-$(function() {
-	
-	//https://docs.google.com/spreadsheet/pub?key=0AtIDg8Wg2JCFdGdibXdnaWd2eVRRR2xVM0RlMU55ekE&output=html
-		var url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
-		var googleSpreadsheet = new GoogleSpreadsheet();
-		googleSpreadsheet.url(url);
-		googleSpreadsheet.load(function(result) {
-			$('#json').html(JSON.stringify(result));
-		});
-	});
+}
  // Стили для переключения вкладок
-$(document).ready(function(){
+function tabSelect(){
         $(".timetable__header").click(function(){ 
             $(this).css('background', '#FEFCD7');
             $(this).css('color', '#B23302');
@@ -253,10 +246,10 @@ $(document).ready(function(){
                 }
     }); 
     
-}) 
+} 
 
+});
 
-  
 
 //$(function() {  
 //    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});

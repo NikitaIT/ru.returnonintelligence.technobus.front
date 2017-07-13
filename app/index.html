@@ -33,6 +33,7 @@
 
 	<div class="container">
 		<div class="row main">
+          <div class="col-sm-6 main__contant" id="table">
            <div class="row">
              <div class="checkbox-container">
                         <input type="checkbox" id="on-off-switch" name="switch1" checked>
@@ -43,13 +44,24 @@
 						<p>Текущее время: <time class="current-time">дата и время</time></p>
 					</div>
            </div>
-			<div class="col-sm-6 main__contant" id="table">
-                <div class="row">
-<!--                <table class="timetable"></table>-->
-               <div class="timetable"></div>
-                </div>
-                <div class="row">
-                </div>
+			<div class="row">
+				<!--                <table class="timetable"></table>-->
+				<div class="timetable">
+					<div class="timetable__row">
+						<div class="timetable__header__row">
+							<div class="timetable__header" id="to">
+								От технополиса</div>
+							<div class="timetable__header" id="from">
+								К технополису</div>
+						</div>
+					</div>
+					<div class="timetable__row__all">
+						<!--		if u can add content, use: addTableList()-->
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			</div>
 			</div>
 			<div class="col-sm-6 main__contant" id="maps">
                 <p>Место посадки</p>
