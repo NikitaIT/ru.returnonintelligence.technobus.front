@@ -5,7 +5,7 @@
 
 	<meta charset="utf-8">
 
-	<title>Title</title>
+	<title>ShuttleBus</title>
 	<meta name="description" content="">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,11 +37,14 @@
            <div class="row">
              <div class="checkbox-container">
                         <input type="checkbox" id="on-off-switch" name="switch1" checked>
+                                 <div id="listener-text">
+                </div>
              </div>
                               
                     <div class="time" >
-                        <h1 class="headline">Расписание автобусов</h1>
-						<p>Текущее время: <time class="current-time">дата и время</time></p>
+                    
+                        <h1 class="headline" name="headline"></h1>
+						<p class="description-text" name="current_time"></p><time class="current-time">дата и время</time><p class="description-text day current-time"></p>
 					</div>
            </div>
 			<div class="row">
@@ -49,9 +52,9 @@
 				<div class="timetable">
 					<div class="timetable__row">
 						<div class="timetable__header__row">
-							<div class="timetable__header" id="to">
+							<div class="timetable__header" id="to" name="to_technopolis">
 								От технополиса</div>
-							<div class="timetable__header" id="from">
+							<div class="timetable__header" id="from" name="from_technopolis">
 								К технополису</div>
 						</div>
 					</div>
@@ -64,10 +67,13 @@
 			</div>
 			</div>
 			<div class="col-sm-6 main__contant" id="maps">
-                <p>Место посадки</p>
+                <p name="place"></p>
                 <div id="map">          
                 </div>
-                <p class="description-text">На остановке в назначенное время вас ждет <span class="highlighter-rouge">бесплатный</span>  автобус с табличкой <span class="text-logo"></span> </p>
+                <div class="description-text-row">
+                <p name="bus_part1" class="description-text"></p>
+                <div class="text-logo"></div>
+                <p name="bus_part2" class="description-text"></p></div>
                <!--       checkbox start         -->
                <div id="json"></div>
             </div>

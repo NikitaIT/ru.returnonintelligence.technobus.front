@@ -1,3 +1,14 @@
+
+function getLanguage(lang) {
+	$.getJSON('lang/' + lang + '.json', function (data) {
+
+		$.each(data, function (key, val) {
+			$('[name = ' + key + ']').html(val);
+			//$('p:contains('+key+')').html(val);
+		});
+	});}
+
+
 ///переключатели
 $(function () {
 	new DG.OnOffSwitch({
@@ -8,40 +19,47 @@ $(function () {
 		textOn: 'Ru',
 		textOff: 'En',
 		listener: function (name, checked) {
-			$("#listener-text").html("Listener called for " + name + ", checked: " + checked);
+			if (checked) {
+				getLanguage("ru");
+			} else {
+				getLanguage("en");
+			}
 		}
 	});
 });
 
 
-
 ///вывод текущей даты
 $(function () {
 	function setDate() {
-    var options ={ 
-        hour: 'numeric', 
-        minute: 'numeric'
-    };
-			var date = new Date();
-			var time = date.toLocaleString('ru',options) +' '+getWeekDay(date).toUpperCase();
-			$("time.current-time").html(time);
-
-			function getWeekDay(date) {
-				var days = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
-				return days[date.getDay()];
-			}
+		var options = {
+			hour: 'numeric',
+			minute: 'numeric'
+		};
+		function getWeekDay(date) {
+			var days = ['sunday', 'monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday'];
+			return days[date.getDay()];
 		}
+		var date = new Date();
+		//var time = date.toLocaleString('ru',options) +' '+getWeekDay(date).toUpperCase();
+		//$("time.current-time").html(time);
+		var time = date.toLocaleString('ru', options) + ' ';
+		$("time.current-time").html(time);
+		$(".description-text.day").attr('name', getWeekDay(date));
+
+		
+	}
 	setDate();
-	setInterval(setDate,1000);
+	setInterval(setDate, 1000);
 });
 /// Отрисовка карты
-$(function() {
+$(function () {
 	function init() {
-        var places = {
-            metro: [59.853876, 30.321102],
-            technopolis: [59.818043, 30.327938]
-        };
-        var currentTab=places.metro;
+		var places = {
+			metro: [59.853876, 30.321102],
+			technopolis: [59.818043, 30.327938]
+		};
+		var currentTab = places.metro;
 
 		var myMap = new ymaps.Map('map', {
 				center: currentTab,
@@ -61,196 +79,167 @@ $(function() {
 			})
 			.add('mouseleave', function (e) {
 				e.get('target').options.unset('preset');
-			});
+			})
+
+		$("#from").click(function () {
+			myMap.setCenter(places.technopolis);
+			myPlacemark.geometry.setCoordinates(myMap.getCenter());
+
+		});
+
+		$("#to").click(function () {
+			myMap.setCenter(places.metro);
+			myPlacemark.geometry.setCoordinates(myMap.getCenter());
+		});
+
+
 	}
-    
+
 	ymaps.ready(init);
-    
+
 });
 
 
 //заполнение таблицы
 $(function () {
-//	$.ajax({
-//	  dataType: 'json',
-//	  url: 'response.php?action=sample5',
-//	  success: function(jsondata){
-//		$('.results').html('Name = ' + jsondata.name + ', Nickname = ' + jsondata.nickname);
-//	  }
-//	});
- 
- var jsonString =                      
-    {"Расписание":
-     [{
-      "ThenGo": "K Technopolis",
-	  "tr": [                             
-		{
-          "hover": 7,
-		  "td": [{"min":45,"dayOfWeek":"ПТ"}]
-		},
-		{
-          "hover": 8,
-		  "td": [{"min":0,"dayOfWeek":"ПТ"},
-                {"min":10,"dayOfWeek":"ПТ"}]
-		}
-      ]
-     },
-      {
-      "ThenGo": "От Technopolis",
-	  "tr": [                             
-		{
-          "hover": 7,
-		  "td": [{"min":45,"dayOfWeek":"ПТ"}
-                ]
-		},
-		{
-          "hover": 8,
-		  "td": [{"min":0,"dayOfWeek":"ПТ"},
-                {"min":10,"dayOfWeek":"ПТ"}]
-		}
-      ]}
-     ]};
-	for(var i=9;i<23;i++){
-		var j = 10;
-		jsonString.Расписание[0].tr.push({
-          "hover": i,
-		  "td": [{"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"},
-                {"min":j++,"dayOfWeek":"ПТ"}]
-		});
-	}
-
-
+	//	$.ajax({
+	//	  dataType: 'json',
+	//	  url: 'response.php?action=sample5',
+	//	  success: function(jsondata){
+	//		$('.results').html('Name = ' + jsondata.name + ', Nickname = ' + jsondata.nickname);
+	//	  }
+	//	});
 	var url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
-		var googleSpreadsheet = new GoogleSpreadsheet();
-		
-		googleSpreadsheet.url(url);
-		
-		googleSpreadsheet.load(function(result) {
-			//$('#json').html(JSON.stringify(result));
-			console.log(result);
-			addTableList(result,".timetable__row__all",0);
-		});
-		var googleSpreadsheet = new GoogleSpreadsheet();
-		googleSpreadsheet.url(url+"&gid=1453141125");
-		googleSpreadsheet.load(function(result) {	
-			console.log(result);
-			//$('#json').html(JSON.stringify(result));
-			addTableList(result,".timetable__row__all",1);
-			initSlick();
-			tabSelect();
-		});
+	var googleSpreadsheet = new GoogleSpreadsheet();
+
+	googleSpreadsheet.url(url);
+
+	googleSpreadsheet.load(function (result) {
+		//$('#json').html(JSON.stringify(result));
+		console.log(result);
+		addTableList(result, ".timetable__row__all", 0);
+	});
+	var googleSpreadsheet = new GoogleSpreadsheet();
+	googleSpreadsheet.url(url + "&gid=1453141125");
+	googleSpreadsheet.load(function (result) {
+		console.log(result);
+		//$('#json').html(JSON.stringify(result));
+		addTableList(result, ".timetable__row__all", 1);
+	});
+	setTimeout(initSlick, 1000);
+	setTimeout(tabSelect, 1000);
 	/*
 	Добавляет страницу таблицы
 	*/
-	function addTableList(timetableJSON,timetableRowClass,id) {
+	function addTableList(timetableJSON, timetableRowClass, id) {
 		var string = "";
-		var mapMin = {"b":"00","c":"05","d":10, "e":15,"f":20,	"g":25,	"h":30,	"i":35,	"j":40, "k":45,	"l":50,	"m":55};
-		string += '<div class="timetable__row__current" id="route'+id+'">';
+		var mapMin = {
+			"b": "00",
+			"c": "05",
+			"d": 10,
+			"e": 15,
+			"f": 20,
+			"g": 25,
+			"h": 30,
+			"i": 35,
+			"j": 40,
+			"k": 45,
+			"l": 50,
+			"m": 55
+		};
+		string += '<div class="timetable__row__current" id="route' + id + '">';
 		timetableJSON.items.forEach(function (item2, i, arr) {
 			var minHtmlString = getMinHtmlString(item2);
-			if(minHtmlString !== ""){
+			if (minHtmlString !== "") {
 				string += '<div class="timetable__row">' +
-				'<div class="timetable__hover " style="background: #FF9101">' +
-				item2.id +
-				'</div><hr/><div class="timetable__row--subrow">'+
-				minHtmlString +
-				'</div></div>';
+					'<div class="timetable__hover " style="background: #FF9101">' +
+					item2.id +
+					'</div><hr/><div class="timetable__row--subrow">' +
+					minHtmlString +
+					'</div></div>';
 			}
 		});
-        string += '</div>';
-		function getMinHtmlString(item2){
+		string += '</div>';
+
+		function getMinHtmlString(item2) {
 			var string = "";
 			for (var item3 in item2) {
-				if(mapMin[item3]!==undefined){
+				if (mapMin[item3] !== undefined) {
 					string += '<div  class="timetable__min day' +
-					item2[item3] + '">' +item2.id+":"+
-                    mapMin[item3] + '</div>';
+						item2[item3] + '">' + item2.id + ":" +
+						mapMin[item3] + '</div>';
 				}
 			}
 			return string;
 		}
 		$(timetableRowClass).append(string);
 	}
+	getLanguage("ru");
+});
 
 function initSlick() {
-		$('.timetable__row--subrow').slick({
-			arrows: false,
-			dots: false,
-			infinite: true,
-			variableWidth: true,
-			speed: 200,
-			slidesToScroll: 7,
-			responsive: [
-				{
-				  breakpoint: 1024,
-				  settings: {
+	$('.timetable__row--subrow').slick({
+		arrows: false,
+		dots: false,
+		infinite: true,
+		variableWidth: true,
+		speed: 200,
+		slidesToScroll: 7,
+		responsive: [
+			{
+				breakpoint: 1024,
+				settings: {
 					variableWidth: false,
 					slidesToShow: 6,
 					slidesToScroll: 4
-				  }
+				}
 				},
-				{
-				  breakpoint: 600,
-				  settings: {
+			{
+				breakpoint: 600,
+				settings: {
 					variableWidth: false,
 					slidesToShow: 5,
 					slidesToScroll: 4
-				  }
+				}
 				},
-				{
-				  breakpoint: 480,
-				  settings: {
+			{
+				breakpoint: 480,
+				settings: {
 					variableWidth: false,
 					slidesToShow: 4,
 					slidesToScroll: 4
-				  }
+				}
 				}
 			 ]
 	});
 }
- // Стили для переключения вкладок
-function tabSelect(){
-        $(".timetable__header").click(function(){ 
-            $(this).css('background', '#FEFCD7');
-            $(this).css('color', '#B23302');
-            if ($(this).attr('id')==='to')
-                {
-                    $("#from").css('background', '#FEDEB7');
-                    $("#from").css('color', '#D9A414');
-					$("#route0").css("visibility", "visible");
-    				$("#route0").css("position", "initial");
-                    $("#route1").css("visibility", "hidden");
-    				$("#route1").css("position", "absolute");
-                }
-            else
-                {
-                    $("#to").css('background', '#FEDEB7');
-                    $("#to").css('color', '#D9A414');
-                    //$("#route0").css('display', 'none');
-                    //$("#route1").css('display', 'block');
-					$("#route0").css("visibility", "hidden");
-    				$("#route0").css("position", "absolute");
-                    $("#route1").css("visibility", "visible");
-    				$("#route1").css("position", "initial");
+// Стили для переключения вкладок
+function tabSelect() {
+	$(".timetable__header").click(function () {
+		$(this).css('background', '#FEFCD7');
+		$(this).css('color', '#B23302');
+		if ($(this).attr('id') === 'to') {
+			$("#from").css('background', '#FEDEB7');
+			$("#from").css('color', '#D9A414');
+			$("#route0").css("visibility", "visible");
+			$("#route0").css("position", "initial");
+			$("#route1").css("visibility", "hidden");
+			$("#route1").css("position", "absolute");
+		} else {
+			$("#to").css('background', '#FEDEB7');
+			$("#to").css('color', '#D9A414');
+			//$("#route0").css('display', 'none');
+			//$("#route1").css('display', 'block');
+			$("#route0").css("visibility", "hidden");
+			$("#route0").css("position", "absolute");
+			$("#route1").css("visibility", "visible");
+			$("#route1").css("position", "initial");
 
-                }
-    }); 
-    
-} 
+		}
+	});
 
-});
+}
 
-
-//$(function() {  
-//    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});
-//});
+	//$(function() {  
+	//    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});
+	//});

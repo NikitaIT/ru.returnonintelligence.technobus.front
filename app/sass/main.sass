@@ -51,7 +51,6 @@ body
 	text-transform: uppercase
 
 .text-logo
-	&:after  
 		content: " "
 		font-size: 24pt
 		text-align: center
@@ -61,8 +60,10 @@ body
 		background: url(/img/technopolis.jpg)
 		background-size: cover
 		display: inline-block
-		height: 17px
-		width: 104px
+		height: 0
+		width: 28%
+.text-logo
+        padding-top: 7%
 
 .timetable
 	user-select: none
@@ -177,7 +178,7 @@ body
     height: 100%
     
 #maps
-    max-width: 535px
+    max-width: 520px
     
     
 
@@ -212,6 +213,7 @@ p
 .current-time
     color: #B23302
     font-size: 120%
+    margin-left: 1%
 
 .time
     margin-left: 3%
@@ -219,7 +221,14 @@ p
 .headline 
     font-size: 120%
 
-.description-text
-    text-align: justify
+.description-text,.description-text-row
+    text-align: center
+    display: inline-block
+    
+.description-text-row
+    width: 100%
+
+    
+    
 
 @import "media" // Всегда в конце
