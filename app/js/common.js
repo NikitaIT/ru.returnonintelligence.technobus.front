@@ -8,11 +8,12 @@ $(function () {
 		textOn: 'Ru',
 		textOff: 'En',
 		listener: function (name, checked) {
-			$("#listener-text").html("Listener called for " + name + ", checked: " + checked);
+            if (checked)
+                getLanguage("ru");
+            else getLanguage("en");
 		}
 	});
 });
-
 
 
 ///вывод текущей даты
@@ -23,11 +24,13 @@ $(function () {
         minute: 'numeric'
     };
 			var date = new Date();
-			var time = date.toLocaleString('ru',options) +' '+getWeekDay(date).toUpperCase();
+			//var time = date.toLocaleString('ru',options) +' '+getWeekDay(date).toUpperCase();
+			//$("time.current-time").html(time);
+            var time = date.toLocaleString('ru',options) +' ';
 			$("time.current-time").html(time);
-
+            $(".description-text.day").attr('name',getWeekDay(date));
 			function getWeekDay(date) {
-				var days = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+				var days = ['sunday', 'monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday'];
 				return days[date.getDay()];
 			}
 		}
@@ -169,8 +172,8 @@ $(function () {
 	
 
 
-    string += '<div class="timetable__row"><div class="timetable__header__row"><div class="timetable__header" id="to">';
-    string += timetableJSON.Расписание[0].ThenGo + '</div><div class="timetable__header" id="from">'+timetableJSON.Расписание[1].ThenGo+'</div></div></div><div class="timetable__row__all">';
+    string += '<div class="timetable__row"><div class="timetable__header__row"><div class="timetable__header" id="to" name="to_technopolis">';
+    string += '</div><div class="timetable__header" id="from" name="from_technopolis"></div></div></div><div class="timetable__row__all">';
     timetableJSON.Расписание.forEach(function (item, i, arr) {
         string += '<div class="timetable__row__current" id="route'+i+'">';
 		item.tr.forEach(function (item2, i, arr) {
@@ -188,6 +191,7 @@ $(function () {
         string += '</div>';
     });
     string += '</div>';
+    getLanguage("ru");
 	timetable.append(string);
 
 });
@@ -259,8 +263,15 @@ $(document).ready(function(){
     
 }) 
 
+function getLanguage(lang){
+$.getJSON('lang/'+lang+'.json', function(data){
 
-  
+  $.each(data, function(key, val){
+    $('[name = '+key+']').html(val);
+    //$('p:contains('+key+')').html(val);
+  });
+});
+}
 
 //$(function() {  
 //    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});
