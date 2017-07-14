@@ -57,12 +57,14 @@ $(function () {
 	function init() {
 		var places = {
 			metro: [59.853876, 30.321102],
-			technopolis: [59.818043, 30.327938]
+			technopolis: [59.818043, 30.327938],
+            metro1: [59.850127, 30.321772],
+            routeCenter: [59.835681, 30.322253]
 		};
-		var currentTab = places.metro;
-
+		var from = places.metro;
+        var to = places.technopolis;
 		var myMap = new ymaps.Map('map', {
-				center: currentTab,
+				center: places.metro,
 				zoom: 16
 			}, {
 				searchControlProvider: 'yandex#search'
@@ -70,7 +72,42 @@ $(function () {
 			myPlacemark = new ymaps.Placemark(myMap.getCenter());
 
 		myMap.geoObjects.add(myPlacemark);
+        var myRoute; 
 
+        function addRoute(from,to){
+            ymaps.route([
+            {
+                point: from,
+                type: 'viaPoint'
+            },
+            to,
+            ]).then(function (route) {
+                        myMap.geoObjects.add(myRoute = route);
+                
+        }, function (error) {
+            alert('Возникла ошибка: ' + error.message);
+            })
+        };
+        
+        var routeButton = new ymaps.control.Button("Показать маршрут");
+        
+    
+        routeButton.events
+            .add('select', function () { 
+            addRoute(from,to);
+            myMap.setZoom(12);
+            myMap.setCenter(places.routeCenter); 
+            routeButton.data.set('content', "Скрыть маршрут");
+            
+        })
+            .add('deselect', function () { 
+            myRoute && myMap.geoObjects.remove(myRoute);
+            routeButton.data.set('content', "Показать маршрут");
+        });
+        
+        
+        myMap.controls.add(routeButton, {float: 'left', maxWidth: 'auto'});
+        
 		myPlacemark.events
 			.add('mouseenter', function (e) {
 				// Ссылку на объект, вызвавший событие,
@@ -81,15 +118,29 @@ $(function () {
 				e.get('target').options.unset('preset');
 			})
 
+       function changeRoute(){
+            if (routeButton.isSelected()) {
+                myRoute && myMap.geoObjects.remove(myRoute);
+                addRoute(from,to);
+            }
+        };
+        
 		$("#from").click(function () {
 			myMap.setCenter(places.technopolis);
-			myPlacemark.geometry.setCoordinates(myMap.getCenter());
-
+            myPlacemark.geometry.setCoordinates(myMap.getCenter());
+            from = places.technopolis;
+            to= places.metro1;
+            changeRoute(); 
+            myMap.setZoom(16);
 		});
 
 		$("#to").click(function () {
 			myMap.setCenter(places.metro);
 			myPlacemark.geometry.setCoordinates(myMap.getCenter());
+            from=places.metro;
+            to=places.technopolis;
+            changeRoute();
+            myMap.setZoom(16);
 		});
 
 
