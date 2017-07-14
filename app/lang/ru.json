@@ -12,5 +12,7 @@
     "thursday":	"Чт",	
     "friday":	"Пт",	
     "saturday":	"Сб",	
-    "sunday":	"Вс"
+    "sunday":	"Вс",
+    "route_show": "Показать маршрут",
+    "route_hide": "Скрыть маршрут" 
 }

@@ -28,7 +28,16 @@ $(function () {
 	});
 });
 
+$(function () {
+    $(".russian").button('toggle');
+    $(".russian").click(function () {
+        getLanguage("ru");
+    });
+    $(".english").click(function () {
+        getLanguage("en");
+    });
 
+});
 ///вывод текущей даты
 $(function () {
 	function setDate() {
