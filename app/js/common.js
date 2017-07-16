@@ -152,7 +152,7 @@ $(function () {
             }
         };
         
-		$("#from").click(function () {
+		$(".from_technopolis").click(function () {
 			myMap.setCenter(places.technopolis);
             myPlacemark.geometry.setCoordinates(myMap.getCenter());
             from = places.technopolis;
@@ -161,7 +161,7 @@ $(function () {
             myMap.setZoom(16);
 		});
 
-		$("#to").click(function () {
+		$(".to_technopolis").click(function () {
 			myMap.setCenter(places.metro);
 			myPlacemark.geometry.setCoordinates(myMap.getCenter());
             from=places.metro;
