@@ -41,7 +41,7 @@ $(function () {
     });
 	$(".lang").addClass("btn-group-vertical");
 	$(".lang").removeClass("btn-group");
-	$(".to_technopolis").button('toggle');
+    $(".to_technopolis").button('toggle');
 	$(".to_technopolis").click(function () {
 			$("#route0").css("visibility", "visible");
 			$("#route0").css("position", "initial");
@@ -58,6 +58,7 @@ $(function () {
 });
 ///вывод текущей даты
 $(function () {
+    
 	function setDate() {
 		var options = {
 			hour: 'numeric',
