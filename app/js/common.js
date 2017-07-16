@@ -10,31 +10,47 @@ function getLanguage(lang) {
 
 
 ///переключатели
-$(function () {
-	new DG.OnOffSwitch({
-		el: '#on-off-switch-notext'
-	});
-	new DG.OnOffSwitch({
-		el: '#on-off-switch',
-		textOn: 'Ru',
-		textOff: 'En',
-		listener: function (name, checked) {
-			if (checked) {
-				getLanguage("ru");
-			} else {
-				getLanguage("en");
-			}
-		}
-	});
-});
+//$(function () {
+//	new DG.OnOffSwitch({
+//		el: '#on-off-switch-notext'
+//	});
+//	new DG.OnOffSwitch({
+//		el: '#on-off-switch',
+//		textOn: 'Ru',
+//		textOff: 'En',
+//		listener: function (name, checked) {
+//			if (checked) {
+//				getLanguage("ru");
+//			} else {
+//				getLanguage("en");
+//			}
+//		}
+//	});
+//});
 
 $(function () {
     $(".russian").button('toggle');
     $(".russian").click(function () {
         getLanguage("ru");
     });
+	$(".russian").click();
     $(".english").click(function () {
         getLanguage("en");
+    });
+	$(".lang").addClass("btn-group-vertical");
+	$(".lang").removeClass("btn-group");
+	$(".to_technopolis").button('toggle');
+	$(".to_technopolis").click(function () {
+			$("#route0").css("visibility", "visible");
+			$("#route0").css("position", "initial");
+			$("#route1").css("visibility", "hidden");
+			$("#route1").css("position", "absolute");
+    });
+	$(".from_technopolis").click(function () {
+        $("#route0").css("visibility", "hidden");
+			$("#route0").css("position", "absolute");
+			$("#route1").css("visibility", "visible");
+			$("#route1").css("position", "initial");
     });
 
 });
@@ -54,7 +70,7 @@ $(function () {
 		//$("time.current-time").html(time);
 		var time = date.toLocaleString('ru', options) + ' ';
 		$("time.current-time").html(time);
-		$(".description-text.day").attr('name', getWeekDay(date));
+		$(".day").attr('name', getWeekDay(date));
 
 		
 	}
@@ -159,7 +175,7 @@ $(function () {
 
 });
 
-
+ 
 //заполнение таблицы
 $(function () {
 	//	$.ajax({
@@ -274,31 +290,31 @@ function initSlick() {
 	});
 }
 // Стили для переключения вкладок
-function tabSelect() {
-	$(".timetable__header").click(function () {
-		$(this).css('background', '#FEFCD7');
-		$(this).css('color', '#B23302');
-		if ($(this).attr('id') === 'to') {
-			$("#from").css('background', '#FEDEB7');
-			$("#from").css('color', '#D9A414');
-			$("#route0").css("visibility", "visible");
-			$("#route0").css("position", "initial");
-			$("#route1").css("visibility", "hidden");
-			$("#route1").css("position", "absolute");
-		} else {
-			$("#to").css('background', '#FEDEB7');
-			$("#to").css('color', '#D9A414');
-			//$("#route0").css('display', 'none');
-			//$("#route1").css('display', 'block');
-			$("#route0").css("visibility", "hidden");
-			$("#route0").css("position", "absolute");
-			$("#route1").css("visibility", "visible");
-			$("#route1").css("position", "initial");
-
-		}
-	});
-
-}
+//function tabSelect() {
+//	$(".timetable__header").click(function () {
+//		$(this).css('background', '#FEFCD7');
+//		$(this).css('color', '#000');
+//		if ($(this).attr('id') === 'to') {
+//			$("#from").css('background', '#FEDEB7');
+//			$("#from").css('color', '#D9A414');
+//			$("#route0").css("visibility", "visible");
+//			$("#route0").css("position", "initial");
+//			$("#route1").css("visibility", "hidden");
+//			$("#route1").css("position", "absolute");
+//		} else {
+//			$("#to").css('background', '#FEDEB7');
+//			$("#to").css('color', '#D9A414');
+//			//$("#route0").css('display', 'none');
+//			//$("#route1").css('display', 'block');
+//			$("#route0").css("visibility", "hidden");
+//			$("#route0").css("position", "absolute");
+//			$("#route1").css("visibility", "visible");
+//			$("#route1").css("position", "initial");
+//
+//		}
+//	});
+//
+//}
 
 	//$(function() {  
 	//    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});

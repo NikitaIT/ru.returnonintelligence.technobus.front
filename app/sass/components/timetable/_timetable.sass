@@ -4,11 +4,11 @@
 	height: auto
 	contain: content
 	overflow-x: hidden
-	background: #FEFCD7
 	overflow-y: hidden
 	min-height: 500px
 	width: 101%
 	max-width: 750px
+	text-align: center;
 	&__hover
 		width: 60px
 		height: 28px
@@ -17,17 +17,27 @@
 		color: #870005
 		font-family: Segoe UI
 		font-size: 18px
-		font-weight: 900
 		display: inline-block
+		background-color: #ffd667;
+		border: 1px solid #95989a;
+		color: #000;
+		outline: 0;
+		border: 1px solid #cccdcd
 	&__min
 		text-align: center
 		color: #870005
 		font-family: Segoe UI
 		font-size: 18px
-		font-weight: 900
+		background-color: #ffd667;
+		border: 1px solid #95989a;
+		color: #000;
+		outline: 0;
+		border: 1px solid #cccdcd
+		text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+		box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+		border-radius: 4px
 	&__row
 		white-space: nowrap
-		background: #FEFCD7
 		&__all
     		margin: 6% 3%
 		&--subrow
@@ -48,7 +58,7 @@
 		&:hover
     		cursor: pointer
 		&__row
-			background: #FEDEB7
+			background: #fefcd7
 			max-width: 750px
 			width: auto
 			height: auto

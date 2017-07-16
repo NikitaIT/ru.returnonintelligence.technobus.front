@@ -7,34 +7,30 @@
     line-height: 1.42857143;
     text-align: center;
     white-space: nowrap;
-    -ms-touch-action: manipulation;
     touch-action: manipulation;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    -webkit-border-radius: 4px;
     border-radius: 4px;
+.btn-group 
+	.btn+.btn, .btn+.btn-group, .btn-group+.btn, .btn-group+.btn-group
+    	margin-left: -1px;
 .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
     -webkit-border-top-right-radius: 0;
     border-top-right-radius: 0;
     -webkit-border-bottom-right-radius: 0;
     border-bottom-right-radius: 0;
 	
-.btn-group-vertical>.btn, .btn-group>.btn
+.btn-group>.btn
 	position: relative
 	float: left
 	border: 1px solid #cccdcd
 	
-.btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group
-    margin-left: -1px;
+
 	
 .btn-danger, .btn-default, .btn-info, .btn-primary, .btn-success, .btn-warning
     text-shadow: 0 -1px 0 rgba(0,0,0,.2);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
 
 [data-toggle=buttons]>.btn input[type=checkbox], [data-toggle=buttons]>.btn input[type=radio], [data-toggle=buttons]>.btn-group>.btn input[type=checkbox], [data-toggle=buttons]>.btn-group>.btn input[type=radio]
@@ -60,15 +56,12 @@ input[type=checkbox], input[type=radio]
 .btn.active, .btn:active
     background-image: none;
     outline: 0;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
     box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 .btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) 
-    -webkit-border-top-left-radius: 0; 
     border-top-left-radius: 0;
-    -webkit-border-bottom-left-radius: 0; 
     border-bottom-left-radius: 0; 
 
-.lang-button
+.btn
     border : 1px solid $light-grey
     background: #FEFCD7
     color: #D9A414
@@ -81,7 +74,7 @@ input[type=checkbox], input[type=radio]
     color: #000
     outline: none
 
-.btn-primary:hover,.lang-button:hover
+.btn-primary:hover,.btn:hover
     background-color: #FEFCD7
     color: #870005
     outline: none
