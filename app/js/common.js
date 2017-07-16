@@ -71,13 +71,14 @@ $(function () {
 		//var time = date.toLocaleString('ru',options) +' '+getWeekDay(date).toUpperCase();
 		//$("time.current-time").html(time);
 		var time = date.toLocaleString('ru', options) + ' ';
+		var dayOfWeek = getWeekDay(date);
+		$(".day").attr('name', dayOfWeek);
 		$("time.current-time").html(time);
-		$(".day").attr('name', getWeekDay(date));
 
 		
 	}
 	setDate();
-	setInterval(setDate, 1000);
+	setInterval(setDate, 9000);
 });
 /// Отрисовка карты
 $(function () {
@@ -233,7 +234,7 @@ $(function () {
 			var minHtmlString = getMinHtmlString(item2);
 			if (minHtmlString !== "") {
 				string += '<div class="timetable__row">' +
-					'<div class="timetable__hover " style="background: #FF9101">' +
+					'<div class="timetable__hover ">' +
 					item2.id +
 					'</div><hr class="line"/><div class="timetable__row--subrow">' +
 					minHtmlString +
