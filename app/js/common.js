@@ -6,7 +6,7 @@ function getLanguage(lang) {
 			$('[name = ' + key + ']').html(val);
 			//$('p:contains('+key+')').html(val);
 		});
-	});}
+});}
 
 
 ///переключатели
@@ -32,9 +32,11 @@ $(function () {
     $(".russian").button('toggle');
     $(".russian").click(function () {
         getLanguage("ru");
+        $('#map').attr('lang','ru');
     });
     $(".english").click(function () {
         getLanguage("en");
+        $('#map').attr('lang','en');
     });
 
 });
@@ -77,6 +79,7 @@ $(function () {
 				zoom: 16
 			}, {
 				searchControlProvider: 'yandex#search'
+                
 			}),
 			myPlacemark = new ymaps.Placemark(myMap.getCenter());
 
@@ -98,7 +101,7 @@ $(function () {
             })
         };
         
-        var routeButton = new ymaps.control.Button("Показать маршрут");
+        var routeButton = new ymaps.control.Button('<div name="route_show">Показать маршрут</div>');
         
     
         routeButton.events
@@ -106,12 +109,14 @@ $(function () {
             addRoute(from,to);
             myMap.setZoom(12);
             myMap.setCenter(places.routeCenter); 
-            routeButton.data.set('content', "Скрыть маршрут");
+            routeButton.data.set('content', '<div name="route_hide"></div>');
+            getLanguage($('#map').attr('lang'));
             
         })
             .add('deselect', function () { 
             myRoute && myMap.geoObjects.remove(myRoute);
-            routeButton.data.set('content', "Показать маршрут");
+            routeButton.data.set('content', '<div name="route_show"></div>');
+            getLanguage($('#map').attr('lang'));
         });
         
         
@@ -231,7 +236,6 @@ $(function () {
 						mapMin[item3] + '</div>';
 				}
 			}
-            console.log(string);
 			return string;
             
 		}
