@@ -208,7 +208,7 @@ $(function () {
 		addTableList(result, ".timetable__row__all", 1);
 	});
 	setTimeout(initSlick, 1000);
-	setTimeout(tabSelect, 1000);
+	//setTimeout(tabSelect, 1000);
 	/*
 	Добавляет страницу таблицы
 	*/
@@ -272,26 +272,21 @@ function initSlick() {
 			{
 				breakpoint: 1024,
 				settings: {
-					variableWidth: false,
-					slidesToShow: 6,
 					slidesToScroll: 4
 				}
 				},
 			{
 				breakpoint: 600,
 				settings: {
-					variableWidth: false,
-					slidesToShow: 5,
 					slidesToScroll: 4
 				}
 				},
 			{
 				breakpoint: 480,
-				settings: {
-					variableWidth: false,
-					slidesToShow: 4,
-					slidesToScroll: 4
-				}
+				settings: "unslick"
+//				{
+//					slidesToScroll: 2
+//				}
 				}
 			 ]
 	});
