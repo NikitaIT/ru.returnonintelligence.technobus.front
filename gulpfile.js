@@ -83,6 +83,10 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 		'app/*.html',
 		'app/.htaccess',
 		]).pipe(gulp.dest('dist'));
+	
+	var buildLang = gulp.src([
+		'app/lang/*',
+		]).pipe(gulp.dest('dist/lang'));
 
 	var buildCss = gulp.src([
 		'app/css/main.min.css',
@@ -101,7 +105,7 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 gulp.task('deploy', function() {
 
 	var conn = ftp.create({
-		host:      'hostname.com',
+		host:      'nikitait.github.io',
 		user:      'username',
 		password:  'userpassword',
 		parallel:  10,
@@ -121,8 +125,8 @@ gulp.task('rsync', function() {
 	return gulp.src('dist/**')
 	.pipe(rsync({
 		root: 'dist/',
-		hostname: 'username@yousite.com',
-		destination: 'yousite/public_html/',
+		hostname: 'nikitait@nikitait.github.io',
+		destination: 'nikitait.github.io/public_html/',
 		archive: true,
 		silent: false,
 		compress: true
