@@ -16,6 +16,7 @@
 	<link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- Chrome, Firefox OS and Opera -->
 	<meta name="theme-color" content="#000">
@@ -45,15 +46,15 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<header class="col-sm-12 header">
-						<div class="time">
+                     <div class="time">
 							<h1 class="headline" name="headline"></h1>
 							<p class="description-text-row">
 							<span  name="current_time"></span><time class="current-time">дата и время</time>
 							<span class="day current-time"></span></p>
 						</div>
 						<p class="btn-group lang" data-toggle="buttons">
-							<label class="btn btn-primary lang-button russian  btn-sm"><input type="radio" name="options" id="option1"> Ru</label>
-							<label class="btn btn-primary lang-button english  btn-sm"><input type="radio" name="options" id="option3"> En</label>
+							<label class="btn  lang-button russian  btn-sm"><input type="radio" name="options" id="option1"> Ru</label>
+							<label class="btn  lang-button english  btn-sm"><input type="radio" name="options" id="option3"> En</label>
 						</p>
 					</header>
 
@@ -64,12 +65,12 @@
 							<!--                <table class="timetable"></table>-->
 							<div class="timetable">
 								<div class="timetable__header btn-group" data-toggle="buttons">
-										<label class="btn btn-primary to_technopolis">
-										<input type="radio"  id="to" name="to_technopolis">
-											От технополиса</label>
-										<label class="btn btn-primary from_technopolis">
-										<input type="radio" id="from" name="from_technopolis">
-											К технополису</label>
+										<label class="btn  to_technopolis" >
+                                            <p class="btn-label" name="to_technopolis"></p>
+										    <input type="radio"  id="to" name="to_technopolis"></label>
+										<label class="btn  from_technopolis">
+                                            <p class="btn-label" name="from_technopolis"></p>
+										    <input type="radio" id="from"></label>
 								</div>
 								<div class="timetable__row__all">
 									<!--		if u can add content, use: addTableList()-->

@@ -119,22 +119,17 @@ $(function () {
             })
         };
         
-        var routeButton = new ymaps.control.Button('<div name="route_show">Показать маршрут</div>');
+        var routeButton = new ymaps.control.Button('<i class="fa fa-bus" style="color: dimgray"></i>');
         
     
         routeButton.events
             .add('select', function () { 
             addRoute(from,to);
             myMap.setZoom(12);
-            myMap.setCenter(places.routeCenter); 
-            routeButton.data.set('content', '<div name="route_hide"></div>');
-            getLanguage($('#map').attr('lang'));
-            
+            myMap.setCenter(places.routeCenter);     
         })
             .add('deselect', function () { 
             myRoute && myMap.geoObjects.remove(myRoute);
-            routeButton.data.set('content', '<div name="route_show"></div>');
-            getLanguage($('#map').attr('lang'));
         });
         
         
