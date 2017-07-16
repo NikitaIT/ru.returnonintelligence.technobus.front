@@ -230,9 +230,10 @@ $(function () {
 				string += '<div class="timetable__row">' +
 					'<div class="timetable__hover " style="background: #FF9101">' +
 					item2.id +
-					'</div><hr/><div class="timetable__row--subrow">' +
+					'</div><hr class="line"/><div class="timetable__row--subrow">' +
 					minHtmlString +
 					'</div></div>';
+                //console.log(item2.id,minHtmlString);
 			}
 		});
 		string += '</div>';
@@ -246,7 +247,9 @@ $(function () {
 						mapMin[item3] + '</div>';
 				}
 			}
+            console.log(string);
 			return string;
+            
 		}
 		$(timetableRowClass).append(string);
 	}
@@ -257,7 +260,7 @@ function initSlick() {
 	$('.timetable__row--subrow').slick({
 		arrows: false,
 		dots: false,
-		infinite: true,
+		infinite: false,
 		variableWidth: true,
 		speed: 200,
 		slidesToScroll: 7,
