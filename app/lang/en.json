@@ -12,5 +12,7 @@
     "thursday":	"Th",	
     "friday":	"Fr",	
     "saturday":	"Sa",	
-    "sunday":	"Su"
+    "sunday":	"Su",
+    "route_show": "Show route",
+    "route_hide": "Hide route"    
 }

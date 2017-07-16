@@ -34,6 +34,8 @@ gulp.task('js', ['common-js'], function() {
 		'app/libs/jquery.nicescroll/dist/jquery.nicescroll.min.js',
         'app/libs/on-off-switch/on-off-switch.js',
         'app/libs/on-off-switch/on-off-switch-onload.js',
+        'app/libs/bootstrap/js/bootstrap.js',
+        'app/libs/bootstrap/js/bootstrap.min.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
