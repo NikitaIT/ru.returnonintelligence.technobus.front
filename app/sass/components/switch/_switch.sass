@@ -7,7 +7,6 @@
     line-height: 1.42857143;
     text-align: center;
     white-space: nowrap;
-    vertical-align: middle;
     -ms-touch-action: manipulation;
     touch-action: manipulation;
     cursor: pointer;
@@ -49,7 +48,6 @@ input[type=checkbox], input[type=radio]
 .btn-group, .btn-group-vertical
     position: relative;
     display: inline-block;
-    vertical-align: middle;
 
 .btn-group-vertical>.btn.active, .btn-group-vertical>.btn:active, .btn-group-vertical>.btn:focus, .btn-group-vertical>.btn:hover, .btn-group>.btn.active, .btn-group>.btn:active, .btn-group>.btn:focus, .btn-group>.btn:hover
     z-index: 2;
@@ -70,3 +68,27 @@ input[type=checkbox], input[type=radio]
     -webkit-border-bottom-left-radius: 0; 
     border-bottom-left-radius: 0; 
 
+.lang-button
+    border : 1px solid $light-grey
+    background: #FEFCD7
+    color: #D9A414
+    outline: none
+    
+    
+.btn-primary.active
+    background-color: $accent
+    border : 1px solid $light-grey
+    color: #000
+    outline: none
+
+.btn-primary:hover,.lang-button:hover
+    background-color: #FEFCD7
+    color: #870005
+    outline: none
+    border : 1px solid $light-grey
+
+.btn-primary.active.focus, .btn-primary.active.focus:hover, .btn-primary.active:hover
+    background-color: $accent
+    color: #870005
+    outline: none
+    border : 1px solid $light-grey
