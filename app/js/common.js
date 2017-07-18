@@ -1,4 +1,6 @@
-
+$(window).load(function(){
+	$(".preloader").delay(1000).fadeOut("slow");
+});
 function getLanguage(lang) {
 	$.getJSON('lang/' + lang + '.json', function (data) {
 
