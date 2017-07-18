@@ -204,7 +204,7 @@ $(function () {
 		//$('#json').html(JSON.stringify(result));
 		addTableList(result, ".timetable__row__all", 1);
 	});
-	setTimeout(initSlick, 1000);
+	//setTimeout(initSlick, 1000);
 	//setTimeout(tabSelect, 1000);
 	/*
 	Добавляет страницу таблицы
@@ -257,64 +257,37 @@ $(function () {
 	getLanguage("ru");
 });
 
-function initSlick() {
-	$('.timetable__row--subrow').slick({
-		arrows: false,
-		dots: false,
-		infinite: false,
-		variableWidth: true,
-		speed: 200,
-		slidesToScroll: 7,
-		responsive: [
-			{
-				breakpoint: 1024,
-				settings: {
-					slidesToScroll: 4
-				}
-				},
-			{
-				breakpoint: 600,
-				settings: {
-					slidesToScroll: 4
-				}
-				},
-			{
-				breakpoint: 480,
-				settings: "unslick"
-//				{
-//					slidesToScroll: 2
+//function initSlick() {
+//	$('.timetable__row--subrow').slick({
+//		arrows: false,
+//		dots: false,
+//		infinite: false,
+//		variableWidth: true,
+//		speed: 200,
+//		slidesToScroll: 7,
+//		responsive: [
+//			{
+//				breakpoint: 1024,
+//				settings: {
+//					slidesToScroll: 4
 //				}
-				}
-			 ]
-	});
-}
-// Стили для переключения вкладок
-//function tabSelect() {
-//	$(".timetable__header").click(function () {
-//		$(this).css('background', '#FEFCD7');
-//		$(this).css('color', '#000');
-//		if ($(this).attr('id') === 'to') {
-//			$("#from").css('background', '#FEDEB7');
-//			$("#from").css('color', '#D9A414');
-//			$("#route0").css("visibility", "visible");
-//			$("#route0").css("position", "initial");
-//			$("#route1").css("visibility", "hidden");
-//			$("#route1").css("position", "absolute");
-//		} else {
-//			$("#to").css('background', '#FEDEB7');
-//			$("#to").css('color', '#D9A414');
-//			//$("#route0").css('display', 'none');
-//			//$("#route1").css('display', 'block');
-//			$("#route0").css("visibility", "hidden");
-//			$("#route0").css("position", "absolute");
-//			$("#route1").css("visibility", "visible");
-//			$("#route1").css("position", "initial");
-//
-//		}
+//				},
+//			{
+//				breakpoint: 600,
+//				settings: {
+//					slidesToScroll: 4
+//				}
+//				},
+//			{
+//				breakpoint: 480,
+//				settings: "unslick"
+////				{
+////					slidesToScroll: 2
+////				}
+//				}
+//			 ]
 //	});
-//
 //}
-
 	//$(function() {  
 	//    $(".timetable").niceScroll({cursorcolor:"#00F",horizrailenabled: false});
 	//});
