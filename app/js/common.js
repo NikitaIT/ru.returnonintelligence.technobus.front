@@ -206,9 +206,57 @@ $(function () {
 		//$('#json').html(JSON.stringify(result));
 		addTableList(result, ".timetable__row__all", 1);
 	});
-	//setTimeout(initSlick, 1000);
-	//setTimeout(tabSelect, 1000);
-	/*
+    
+
+//// Сохранение расписания в локальное хранилище
+//   function saveToLocalStorage(){ 
+//       	var url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
+//	    var googleSpreadsheet = new GoogleSpreadsheet();
+//
+//	     googleSpreadsheet.url(url);
+//         googleSpreadsheet.load(function (result) {
+//		  //$('#json').html(JSON.stringify(result));
+//		  //console.log(result);
+//		  localStorage.setItem(0,JSON.stringify(result));
+//          addTableList(result, ".timetable__row__all", 0);
+//	   });
+//   	   var googleSpreadsheet = new GoogleSpreadsheet();
+//	   googleSpreadsheet.url(url + "&gid=1453141125");
+//	   googleSpreadsheet.load(function (result) {
+//		//$('#json').html(JSON.stringify(result));
+//		localStorage.setItem(1,JSON.stringify(result));
+//        addTableList(result, ".timetable__row__all", 1);
+//	   });
+//       localStorage.setItem('DATE',Date());
+//   }
+//    
+//    function updateStorage(){
+//        localStorage.clear();
+//        $(".timetable__row__all").html("");
+//        saveToLocalStorage();
+//    }
+//    
+//    if (localStorage.length==0 || localStorage.getItem(0)===null || localStorage.getItem(1)===null){
+//        saveToLocalStorage();
+//    } else {
+//        addTableList(JSON.parse(localStorage.getItem(0)), ".timetable__row__all", 0);
+//        addTableList(JSON.parse(localStorage.getItem(1)), ".timetable__row__all", 1);
+//    }
+//	//setTimeout(initSlick, 1000);
+//	//setTimeout(tabSelect, 1000);
+//    
+//    //Сохранение документа с расписанием
+//    function download(text, name, type) {
+//        var a = document.createElement("a");
+//        var file = new Blob([text], {type: type});
+//        a.href = URL.createObjectURL(file);
+//        a.download = name;
+//        a.click();
+//    }
+    
+    
+    
+    /*
 	Добавляет страницу таблицы
 	*/
 	function addTableList(timetableJSON, timetableRowClass, id) {
