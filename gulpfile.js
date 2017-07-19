@@ -12,16 +12,23 @@ var gulp           = require('gulp'),
 		autoprefixer   = require('gulp-autoprefixer'),
 		ftp            = require('vinyl-ftp'),
 		notify         = require("gulp-notify"),
-		rsync          = require('gulp-rsync');
+		rsync          = require('gulp-rsync'),
+		babel			= require('gulp-babel');
 
 // Скрипты проекта
 
-gulp.task('common-js', function() {
+gulp.task("common-js", function() {
 	return gulp.src([
+		'app/js/map.js',
+		'app/js/api.js',
 		'app/js/common.js',
 		])
+	.pipe(babel({
+			//plugins: ['transform-runtime'],
+			presets: ['env']
+		}))
 	.pipe(concat('common.min.js'))
-	.pipe(uglify())
+	//.pipe(uglify())
 	.pipe(gulp.dest('app/js'));
 });
 
@@ -39,7 +46,7 @@ gulp.task('js', ['common-js'], function() {
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
-	// .pipe(uglify()) // Минимизировать весь js (на выбор)
+	//.pipe(uglify()) // Минимизировать весь js (на выбор)
 	.pipe(gulp.dest('app/js'))
 	.pipe(browserSync.reload({stream: true}));
 });
@@ -60,7 +67,7 @@ gulp.task('sass', function() {
 	.pipe(sass({outputStyle: 'expand'}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
-	.pipe(cleanCSS()) // Опционально, закомментировать при отладке
+	//.pipe(cleanCSS()) // Опционально, закомментировать при отладке
 	.pipe(gulp.dest('app/css'))
 	.pipe(browserSync.reload({stream: true}));
 });
@@ -126,7 +133,7 @@ gulp.task('rsync', function() {
 	.pipe(rsync({
 		root: 'dist/',
 		hostname: 'nikitait@nikitait.github.io',
-		destination: 'nikitait.github.io/public_html/',
+		destination: 'nikitait.github.io/dist/',
 		archive: true,
 		silent: false,
 		compress: true

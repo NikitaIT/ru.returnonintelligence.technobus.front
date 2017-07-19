@@ -9,10 +9,13 @@
   "author": "WebDesign Master",
   "license": "ISC",
   "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
     "browser-sync": "^2.18.11",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^6.1.2",
     "gulp-cache": "^0.4.6",
     "gulp-clean-css": "^3.3.1",
     "gulp-concat": "^2.6.1",
