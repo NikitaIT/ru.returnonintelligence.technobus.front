@@ -13,6 +13,13 @@
     "friday":	"Пт",	
     "saturday":	"Сб",	
     "sunday":	"Вс",
+    "fullMonday": "Понедельник",
+    "fullTuesday":	"Вторник",	
+    "fullTednesday": "Среда",	
+    "fullThursday":	"Четверг",	
+    "fullFriday":	"Пятница",	
+    "fullSaturday":	"Суббота",	
+    "fullSunday":	"Воскресенье",
     "route_show": "Показать маршрут",
     "route_hide": "Скрыть маршрут" 
 }

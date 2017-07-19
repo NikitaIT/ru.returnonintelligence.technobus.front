@@ -11,6 +11,7 @@ function getLanguage(lang) {
 		});
 });}
 var days = ['sunday', 'monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday'];
+var fullDays = ['fullSunday', 'fullMonday', 'fullTuesday', 'fullTednesday', 'fullThursday', 'fullFriday', 'fullSaturday'];
 
 
 ///переключатели
@@ -76,7 +77,7 @@ $(function () {
 			minute: 'numeric'
 		};
 		function getWeekDay(date) {
-			return days[date.getDay()];
+			return fullDays[date.getDay()];
 		}
 		var date = new Date();
 		//var time = date.toLocaleString('ru',options) +' '+getWeekDay(date).toUpperCase();
