@@ -206,23 +206,6 @@ $(function () {
 	var url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
 	var googleSpreadsheet = new GoogleSpreadsheet();
 
-	googleSpreadsheet.url(url);
-
-	googleSpreadsheet.load(function (result) {
-		//$('#json').html(JSON.stringify(result));
-		console.log(result);
-		addTableList(result, ".timetable__row__all", 0);
-	});
-	var googleSpreadsheet = new GoogleSpreadsheet();
-	googleSpreadsheet.url(url + "&gid=1453141125");
-	googleSpreadsheet.load(function (result) {
-		console.log(result);
-		//$('#json').html(JSON.stringify(result));
-		addTableList(result, ".timetable__row__all", 1);
-	});
-
-    
-
 //// Сохранение расписания в локальное хранилище
 //   function saveToLocalStorage(){ 
 //       	var url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
@@ -272,8 +255,7 @@ $(function () {
     
     
 
-
-	var googleSpreadsheet = new GoogleSpreadsheet();
+    var googleSpreadsheet = new GoogleSpreadsheet();
 	googleSpreadsheet.url(url + "&gid=135110459");
 	googleSpreadsheet.load(function (result) {
 		console.log(result);
