@@ -6,7 +6,7 @@
 @import "components/switch/switch"
 @import "components/timetable/timetable"
 @import "components/panel/panel"
-
+@import "components/panel/days"
 
 *::-webkit-input-placeholder
 	color: #666
@@ -48,9 +48,6 @@ body
 	&__contant
 		height: 100%
 
-.dayFr
-	background: lightcoral !important
-
 .highlighter-rouge
 	text-transform: uppercase
 
@@ -80,8 +77,8 @@ body
     //margin-top: 10px
 
 #to
-    background: #FEFCD7
-    color: #B23302
+    background: $accent-low
+    color: $red
 
 #route1
     visibility: hidden
@@ -119,7 +116,7 @@ body
 	position: absolute
     
 .current-time
-    color: #B23302
+    color: $red
     font-size: 120%
     margin-left: 1%
 

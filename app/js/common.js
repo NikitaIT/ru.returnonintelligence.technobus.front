@@ -1,6 +1,7 @@
 $(window).load(function(){
 	$(".preloader").delay(1000).fadeOut("slow");
 });
+
 function getLanguage(lang) {
 	$.getJSON('lang/' + lang + '.json', function (data) {
 
@@ -9,6 +10,7 @@ function getLanguage(lang) {
 			//$('p:contains('+key+')').html(val);
 		});
 });}
+var days = ['sunday', 'monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday'];
 
 
 ///переключатели
@@ -60,14 +62,20 @@ $(function () {
 });
 ///вывод текущей даты
 $(function () {
-    
+	(function(){
+		var strDOM = "";
+		days.forEach(function (day, i, arr) {
+			strDOM+= '<div class="panel--button panel--button-'+i+' day-'+day+' ">'
+					+'<span name="'+day+'"></span></div>';
+		});
+		$(".panel").append(strDOM);
+	})();
 	function setDate() {
 		var options = {
 			hour: 'numeric',
 			minute: 'numeric'
 		};
 		function getWeekDay(date) {
-			var days = ['sunday', 'monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday'];
 			return days[date.getDay()];
 		}
 		var date = new Date();
@@ -77,8 +85,13 @@ $(function () {
 		var dayOfWeek = getWeekDay(date);
 		$(".day").attr('name', dayOfWeek);
 		$("time.current-time").html(time);
-
-		
+		var minTmp = date.getMinutes();
+		Number.prototype.div = function(by){
+			return (this - this % by) / by;
+		}
+		var tmp = (minTmp>=10)?(minTmp.div(10)+1)+"0":"10";
+		console.log(tmp);
+		$('.timetable__min:contains('+ date.getHours() + ':'+ tmp +')').css('border', '2px solid green');
 	}
 	setDate();
 	setInterval(setDate, 9000);
@@ -212,6 +225,7 @@ $(function () {
 	Добавляет страницу таблицы
 	*/
 	function addTableList(timetableJSON, timetableRowClass, id) {
+		console.log("f: addTableList(id="+id+")");
 		var string = "";
 		var mapMin = {
 			"b": "00",
@@ -230,6 +244,7 @@ $(function () {
 		string += '<div class="timetable__row__current" id="route' + id + '">';
 		timetableJSON.items.forEach(function (item2, i, arr) {
 			var minHtmlString = getMinHtmlString(item2);
+			
 			if (minHtmlString !== "") {
 				string += '<div class="timetable__row">' +
 					'<div class="timetable__hover ">' +
@@ -243,17 +258,34 @@ $(function () {
 		string += '</div>';
 
 		function getMinHtmlString(item2) {
+			function getDayClassName(tableDayName){
+				var daysInTable = ['Su', 'Mo', 'Tu', 'Te', 'Th', 'Fr', 'Sa','All'];
+				if(tableDayName==='All'){
+					var tmpStr = '';
+					days.forEach(function (day, i, arr) {
+						tmpStr +=' day-'+day;
+					});
+					return tmpStr + ' day-All';
+				}
+				
+				if(daysInTable.indexOf(tableDayName)===undefined){
+					console.error("tableDayName is undefined");
+					return ' ';
+				}
+				return ' day-'+days[daysInTable.indexOf(tableDayName)];
+			}
 			var string = "";
+			//console.log(item2)
 			for (var item3 in item2) {
 				if (mapMin[item3] !== undefined) {
-					string += '<div  class="timetable__min day' +
-						item2[item3] + '">' + item2.id + ":" +
+					string += '<div  class="timetable__min ' +
+						getDayClassName(item2[item3]) + '">' + item2.id + ":" +
 						mapMin[item3] + '</div>';
 				}
 			}
 			return string;
-            
 		}
+		console.log($(timetableRowClass));
 		$(timetableRowClass).append(string);
 	}
 	getLanguage("ru");
