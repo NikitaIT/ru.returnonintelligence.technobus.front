@@ -220,6 +220,21 @@ $(function () {
 		//$('#json').html(JSON.stringify(result));
 		addTableList(result, ".timetable__row__all", 1);
 	});
+	var googleSpreadsheet = new GoogleSpreadsheet();
+	googleSpreadsheet.url(url + "&gid=135110459");
+	googleSpreadsheet.load(function (result) {
+		console.log(result);
+		addInfoList(result,'.info-list');
+		//$('#json').html(JSON.stringify(result));
+	});
+	function addInfoList(infoJSON, infoClass){
+		var strDOM = "";
+		infoJSON.items.forEach(function (it, i, arr) {
+			console.log(it);
+			strDOM+= '<p class="info-list--elem"><span class="info-list--elem__title">'+it.id+'</span>  '+it.info+'</p>';
+		});
+		$(infoClass).append(strDOM);
+	}
 	//setTimeout(initSlick, 1000);
 	//setTimeout(tabSelect, 1000);
 	/*
