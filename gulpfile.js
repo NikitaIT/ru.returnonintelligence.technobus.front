@@ -28,6 +28,14 @@ gulp.task('common-js', function() {
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
+		'app/libs/jquery-migrate/jquery-migrate.min.js',
+		'app/libs/jquery-google-spreadsheet/jquery.google.spreadsheet.min.js',
+		'app/libs/slick-1.6.0/slick/slick.min.js',
+		'app/libs/jquery.nicescroll/dist/jquery.nicescroll.min.js',
+        'app/libs/on-off-switch/on-off-switch.js',
+        'app/libs/on-off-switch/on-off-switch-onload.js',
+        'app/libs/bootstrap/js/bootstrap.js',
+        'app/libs/bootstrap/js/bootstrap.min.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
@@ -75,6 +83,10 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 		'app/*.html',
 		'app/.htaccess',
 		]).pipe(gulp.dest('dist'));
+	
+	var buildLang = gulp.src([
+		'app/lang/*',
+		]).pipe(gulp.dest('dist/lang'));
 
 	var buildCss = gulp.src([
 		'app/css/main.min.css',
@@ -93,7 +105,7 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 gulp.task('deploy', function() {
 
 	var conn = ftp.create({
-		host:      'hostname.com',
+		host:      'nikitait.github.io',
 		user:      'username',
 		password:  'userpassword',
 		parallel:  10,
@@ -113,8 +125,8 @@ gulp.task('rsync', function() {
 	return gulp.src('dist/**')
 	.pipe(rsync({
 		root: 'dist/',
-		hostname: 'username@yousite.com',
-		destination: 'yousite/public_html/',
+		hostname: 'nikitait@nikitait.github.io',
+		destination: 'nikitait.github.io/public_html/',
 		archive: true,
 		silent: false,
 		compress: true

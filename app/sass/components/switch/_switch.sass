@@ -1,0 +1,114 @@
+.btn
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+.btn-group 
+	.btn+.btn, .btn+.btn-group, .btn-group+.btn, .btn-group+.btn-group
+    	margin-left: -1px;
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
+    -webkit-border-top-right-radius: 0;
+    border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+	
+.btn-group>.btn
+	position: relative
+	float: left
+	border: 1px solid $grey
+	
+
+	
+.btn-danger, .btn-default, .btn-info, .btn-primary, .btn-success, .btn-warning
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+
+[data-toggle=buttons]>.btn input[type=checkbox], [data-toggle=buttons]>.btn input[type=radio], [data-toggle=buttons]>.btn-group>.btn input[type=checkbox], [data-toggle=buttons]>.btn-group>.btn input[type=radio]
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+input[type=checkbox], input[type=radio] 
+    margin: 4px 0 0;
+    line-height: normal;
+	
+.btn-group, .btn-group-vertical
+    position: relative;
+    display: inline-block;
+
+.btn-group-vertical>.btn.active, .btn-group-vertical>.btn:active, .btn-group-vertical>.btn:focus, .btn-group-vertical>.btn:hover, .btn-group>.btn.active, .btn-group>.btn:active, .btn-group>.btn:focus, .btn-group>.btn:hover
+    z-index: 2;
+.btn-primary.active
+    background-color: $accent;
+    border: 1px solid $grey;
+    color: #000;
+    outline: 0;
+	
+.btn.active, .btn:active
+    background-image: none;
+    outline: 0;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) 
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; 
+
+.lang-button
+    border : 1px solid $light-grey
+    background: $accent-low
+    color: #D9A414
+    outline: none
+    
+    
+.lang-button.active
+    background-color: $accent
+    border : 1px solid $light-grey
+    color: #000
+    outline: none
+
+.lang-button:hover
+    background-color: $accent-low
+    color: $red
+    outline: none
+    border : 1px solid $light-grey
+
+.lang-button.focus.active, .lang-button.focus.active:hover, .lang-button.active:hover
+    background-color: $accent
+    color: $red
+    outline: none
+    border : 1px solid $light-grey
+    
+
+.btn-group-vertical>.btn:last-child:not(:first-child) 
+    -webkit-border-top-left-radius: 0;
+    border-top-left-radius: 0;
+    -webkit-border-top-right-radius: 0;
+    border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+
+.btn-group-vertical>.btn:first-child:not(:last-child)
+    -webkit-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+.btn-group-vertical>.btn, .btn-group-vertical>.btn-group, .btn-group-vertical>.btn-group>.btn 
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: 100%;

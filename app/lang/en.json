@@ -1,0 +1,18 @@
+{
+    "headline" : "Shuttle Bus",
+    "to_technopolis" : "To Technopolis",
+    "from_technopolis": "From Technopolis",
+    "current_time": "Current time: ",
+    "place": "Departure",
+    "bus_part1": "There is a logo",
+    "bus_part2": "behind the windscreen",
+    "monday": "Mo",
+    "tuesday":	"Tu",	
+    "tednesday": "We",	
+    "thursday":	"Th",	
+    "friday":	"Fr",	
+    "saturday":	"Sa",	
+    "sunday":	"Su",
+    "route_show": "Show route",
+    "route_hide": "Hide route"
+}
