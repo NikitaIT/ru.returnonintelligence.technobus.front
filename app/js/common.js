@@ -85,13 +85,14 @@ $(function () {
 		var dayOfWeek = getWeekDay(date);
 		$(".day").attr('name', dayOfWeek);
 		$("time.current-time").html(time);
-		var minTmp = date.getMinutes();
+		
 		Number.prototype.div = function(by){
 			return (this - this % by) / by;
 		}
-		var tmp = (minTmp>=10)?(minTmp.div(10)+1)+"0":"10";
-		console.log(tmp);
-		$('.timetable__min:contains('+ date.getHours() + ':'+ tmp +')').css('border', '2px solid green');
+		var minTmp = date.getMinutes();
+		var tmpM = (minTmp>=10)?(minTmp.div(10)+1)+"0":"10";
+		//console.log(tmpM);
+		$('.timetable__min:contains('+ date.getHours() + ':'+ tmpM +')').css('border', '2px solid green');
 	}
 	setDate();
 	setInterval(setDate, 9000);
