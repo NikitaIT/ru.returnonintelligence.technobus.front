@@ -6,7 +6,7 @@
 @import "components/switch/switch"
 @import "components/timetable/timetable"
 @import "components/panel/panel"
-
+@import "components/panel/days"
 
 *::-webkit-input-placeholder
 	color: #666
@@ -42,14 +42,29 @@ body
 	font-family: $default-font
 	overflow-x: hidden
 	opacity: 1
-
+body
+   // background-image: url(/img/pattern.svg); /* Путь к фоновому рисунку */
+   // background-position: left bottom; /* Положение фона */
+   // background-repeat: repeat; /* Повторяем фон по горизонтали */
+	
+#body
+   position: relative
+#body:before 
+	content : ""
+	display: block
+	position: absolute
+	top: 0
+	left: 0
+	background-image: url(/img/pattern.png)
+	background-repeat: repeat
+	width: 100%
+	height: 100%
+	opacity : 0.1
+	z-index: 0
 .main
 	height: 100vh
 	&__contant
 		height: 100%
-
-.dayFr
-	background: lightcoral !important
 
 .highlighter-rouge
 	text-transform: uppercase
@@ -80,8 +95,8 @@ body
     //margin-top: 10px
 
 #to
-    background: #FEFCD7
-    color: #B23302
+    background: $accent-low
+    color: $red
 
 #route1
     visibility: hidden
@@ -119,7 +134,7 @@ body
 	position: absolute
     
 .current-time
-    color: #B23302
+    color: $red
     font-size: 120%
     margin-left: 1%
 
@@ -160,8 +175,10 @@ body
 svg:not(:root) 
     overflow: hidden;
     vertical-align: middle;
-
-
+.info-list--elem__title
+    background: $accent
+    border-radius: 4px
+    padding: 3px 6px
 
 
 @import "media" // Всегда в конце

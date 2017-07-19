@@ -1,6 +1,7 @@
 $(window).load(function(){
 	$(".preloader").delay(1000).fadeOut("slow");
 });
+
 function getLanguage(lang) {
 	$.getJSON('lang/' + lang + '.json', function (data) {
 
@@ -9,6 +10,7 @@ function getLanguage(lang) {
 			//$('p:contains('+key+')').html(val);
 		});
 });}
+var days = ['sunday', 'monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday'];
 
 
 ///переключатели
@@ -60,14 +62,20 @@ $(function () {
 });
 ///вывод текущей даты
 $(function () {
-    
+	(function(){
+		var strDOM = "";
+		days.forEach(function (day, i, arr) {
+			strDOM+= '<div class="panel--button panel--button-'+i+' day-'+day+' ">'
+					+'<span name="'+day+'"></span></div>';
+		});
+		$(".panel").append(strDOM);
+	})();
 	function setDate() {
 		var options = {
 			hour: 'numeric',
 			minute: 'numeric'
 		};
 		function getWeekDay(date) {
-			var days = ['sunday', 'monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday'];
 			return days[date.getDay()];
 		}
 		var date = new Date();
@@ -77,8 +85,14 @@ $(function () {
 		var dayOfWeek = getWeekDay(date);
 		$(".day").attr('name', dayOfWeek);
 		$("time.current-time").html(time);
-
 		
+		Number.prototype.div = function(by){
+			return (this - this % by) / by;
+		}
+		var minTmp = date.getMinutes();
+		var tmpM = (minTmp>=10)?(minTmp.div(10)+1)+"0":"10";
+		//console.log(tmpM);
+		$('.timetable__min:contains('+ date.getHours() + ':'+ tmpM +')').css('border', '2px solid green');
 	}
 	setDate();
 	setInterval(setDate, 9000);
@@ -206,6 +220,7 @@ $(function () {
 		//$('#json').html(JSON.stringify(result));
 		addTableList(result, ".timetable__row__all", 1);
 	});
+
     
 
 //// Сохранение расписания в локальное хранилище
@@ -256,10 +271,31 @@ $(function () {
     
     
     
-    /*
+
+
+	var googleSpreadsheet = new GoogleSpreadsheet();
+	googleSpreadsheet.url(url + "&gid=135110459");
+	googleSpreadsheet.load(function (result) {
+		console.log(result);
+		addInfoList(result,'.info-list');
+		//$('#json').html(JSON.stringify(result));
+	});
+	function addInfoList(infoJSON, infoClass){
+		var strDOM = "";
+		infoJSON.items.forEach(function (it, i, arr) {
+			console.log(it);
+			strDOM+= '<p class="info-list--elem"><span class="info-list--elem__title">'+it.id+'</span>  '+it.info+'</p>';
+		});
+		$(infoClass).append(strDOM);
+	}
+	//setTimeout(initSlick, 1000);
+	//setTimeout(tabSelect, 1000);
+	/*
+
 	Добавляет страницу таблицы
 	*/
 	function addTableList(timetableJSON, timetableRowClass, id) {
+		console.log("f: addTableList(id="+id+")");
 		var string = "";
 		var mapMin = {
 			"b": "00",
@@ -278,6 +314,7 @@ $(function () {
 		string += '<div class="timetable__row__current" id="route' + id + '">';
 		timetableJSON.items.forEach(function (item2, i, arr) {
 			var minHtmlString = getMinHtmlString(item2);
+			
 			if (minHtmlString !== "") {
 				string += '<div class="timetable__row">' +
 					'<div class="timetable__hover ">' +
@@ -291,17 +328,34 @@ $(function () {
 		string += '</div>';
 
 		function getMinHtmlString(item2) {
+			function getDayClassName(tableDayName){
+				var daysInTable = ['Su', 'Mo', 'Tu', 'Te', 'Th', 'Fr', 'Sa','All'];
+				if(tableDayName==='All'){
+					var tmpStr = '';
+					days.forEach(function (day, i, arr) {
+						tmpStr +=' day-'+day;
+					});
+					return tmpStr + ' day-All';
+				}
+				
+				if(daysInTable.indexOf(tableDayName)===undefined){
+					console.error("tableDayName is undefined");
+					return ' ';
+				}
+				return ' day-'+days[daysInTable.indexOf(tableDayName)];
+			}
 			var string = "";
+			//console.log(item2)
 			for (var item3 in item2) {
 				if (mapMin[item3] !== undefined) {
-					string += '<div  class="timetable__min day' +
-						item2[item3] + '">' + item2.id + ":" +
+					string += '<div  class="timetable__min ' +
+						getDayClassName(item2[item3]) + '">' + item2.id + ":" +
 						mapMin[item3] + '</div>';
 				}
 			}
 			return string;
-            
 		}
+		console.log($(timetableRowClass));
 		$(timetableRowClass).append(string);
 	}
 	getLanguage("ru");

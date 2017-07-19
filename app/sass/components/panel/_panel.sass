@@ -1,28 +1,26 @@
+$panelShift: calc(0px + 30px - 200px)
 .panel--button
-	position: fixed
-	top: 353px
-	background: #0094d6
-	width: 200px
-	left: calc(0px + 30px - 200px )
+	position: relative
 	height: 40px
-	font-size: 25px
-	color: #fff
+	font-size: 20px
+	padding: 0 4px
+	color: $red
 	text-align: right
 	transition-duration: 0.3s
 	border-radius: 0 5px 5px 0
-
+	left: calc(0px + 30px - 200px)
+	width: 200px
+	border: 1px solid $grey
+	cursor: pointer
+	box-shadow: inset 194px 0px 0px $accent-low, 0 1px 0 rgba(0,0,0,.075)
+	transform: rotate(15deg)
+	text-transform: lowercase
 .panel
 	position: fixed
-	top: 153px
-	left: -100px
-	background: #ff7700
-	width: 100px
-	height: 150px
-	padding: 100px 0 0 0
-	transition-duration: 0.3s
-	border-radius: 0 5px 0 0
-.panel--button:hover 
-	left: calc(0px + 30px - 200px + 100px )
-.panel--button:hover 
-	.panel
-		left: 0
+	top: calc(50vh - 7 * 20px)
+	
+
+.panel--button
+	&:hover, &:focus
+		left: calc(calc(0px + 30px - 200px) + 100px )
+		cursor: pointer
