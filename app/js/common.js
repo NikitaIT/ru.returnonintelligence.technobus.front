@@ -1,5 +1,5 @@
-const days = ['sunday', 'monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday'];
-const fullDays = ['fullSunday', 'fullMonday', 'fullTuesday', 'fullTednesday', 'fullThursday', 'fullFriday', 'fullSaturday'];
+const days = ['monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday','sunday'];
+const fullDays = ['fullMonday', 'fullTuesday', 'fullTednesday', 'fullThursday', 'fullFriday', 'fullSaturday','fullSunday'];
 
 /**
  * Установка языка сайта
@@ -17,6 +17,8 @@ UpUp.start({
   'assets': ['/img/technopolis.jpg', '/css/main.min.css', '/lang/en.json', '/lang/ru.json','/js/scripts.min.js'],
   'service-worker-url': '/upup.sw.min.js'
 });
+
+
 
 //    
 //    //Сохранение документа с расписанием
