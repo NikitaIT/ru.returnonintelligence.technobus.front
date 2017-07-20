@@ -25,8 +25,7 @@ gulp.task('doc', function (cb) {
 
 gulp.task("common-js", function() {
 	return gulp.src([
-		'app/js/map.js',
-		'app/js/api.js',
+		'app/js/components/*.js',
 		'app/js/common.js',
 		])
 	.pipe(babel({
@@ -80,7 +79,7 @@ gulp.task('sass', function() {
 
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 	gulp.watch('app/sass/**/*.sass', ['sass']);
-	gulp.watch(['libs/**/*.js', 'app/js/common.js', 'app/js/api.js', 'app/js/map.js'], ['js']);
+	gulp.watch(['libs/**/*.js', 'app/js/common.js', 'app/js/components/*.js'], ['js']);
 	gulp.watch('app/*.html', browserSync.reload);
 });
 
