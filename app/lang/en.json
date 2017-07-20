@@ -13,6 +13,13 @@
     "friday":	"Fr",	
     "saturday":	"Sa",	
     "sunday":	"Su",
+    "fullMonday": "Monday",
+    "fullTuesday":	"Tuesday",	
+    "fullTednesday": "Tednesday",	
+    "fullThursday":	"Thursday",	
+    "fullFriday":	"Friday",	
+    "fullSaturday":	"Saturday",	
+    "fullSunday":	"Sunday",
     "route_show": "Show route",
     "route_hide": "Hide route"
 }

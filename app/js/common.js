@@ -11,6 +11,7 @@ function getLanguage(lang) {
 		});
 });}
 var days = ['sunday', 'monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday'];
+var fullDays = ['fullSunday', 'fullMonday', 'fullTuesday', 'fullTednesday', 'fullThursday', 'fullFriday', 'fullSaturday'];
 
 
 ///переключатели
@@ -76,7 +77,7 @@ $(function () {
 			minute: 'numeric'
 		};
 		function getWeekDay(date) {
-			return days[date.getDay()];
+			return fullDays[date.getDay()];
 		}
 		var date = new Date();
 		//var time = date.toLocaleString('ru',options) +' '+getWeekDay(date).toUpperCase();
@@ -131,7 +132,7 @@ $(function () {
                         myMap.geoObjects.add(myRoute = route);
                 
         }, function (error) {
-            alert('Возникла ошибка: ' + error.message);
+            //alert('Возникла ошибка: ' + error.message);
             })
         };
         
@@ -206,38 +207,78 @@ $(function () {
 	var url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
 	var googleSpreadsheet = new GoogleSpreadsheet();
 
-	googleSpreadsheet.url(url);
+// Сохранение расписания в локальное хранилище
+   function saveToLocalStorage(){ 
+       	var url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
+	    var googleSpreadsheet = new GoogleSpreadsheet();
 
-	googleSpreadsheet.load(function (result) {
-		//$('#json').html(JSON.stringify(result));
-		console.log(result);
-		addTableList(result, ".timetable__row__all", 0);
-	});
-	var googleSpreadsheet = new GoogleSpreadsheet();
-	googleSpreadsheet.url(url + "&gid=1453141125");
-	googleSpreadsheet.load(function (result) {
-		console.log(result);
-		//$('#json').html(JSON.stringify(result));
-		addTableList(result, ".timetable__row__all", 1);
-	});
-	var googleSpreadsheet = new GoogleSpreadsheet();
+       googleSpreadsheet.url(url);
+          googleSpreadsheet.load(function (result) {
+		  localStorage.setItem(0,JSON.stringify(result));
+          addTableList(JSON.parse(localStorage.getItem(0)), ".timetable__row__all", 0);
+	   });
+       
+   	   var googleSpreadsheet = new GoogleSpreadsheet();
+	   googleSpreadsheet.url(url + "&gid=1453141125");
+	   googleSpreadsheet.load(function (result) {
+		localStorage.setItem(1,JSON.stringify(result));
+        addTableList(JSON.parse(localStorage.getItem(1)), ".timetable__row__all", 1);
+	   });
+       localStorage.setItem('DATE',Date());
+    }
+    
+    function updateStorage(){
+        $(".timetable__row__all").html("");
+        saveToLocalStorage();
+    }
+    
+    function showTimetable(){
+        addTableList(JSON.parse(localStorage.getItem(1)), ".timetable__row__all", 1);
+        addTableList(JSON.parse(localStorage.getItem(0)), ".timetable__row__all", 0);
+    }
+    
+    if (localStorage.length==0 || localStorage.getItem(0)==null || localStorage.getItem(1)==null){
+        saveToLocalStorage();
+    } else {
+        showTimetable();
+        if(navigator.onLine) {
+            updateStorage();
+        };
+    }
+	
+//    
+//    //Сохранение документа с расписанием
+//    function download(text, name, type) {
+//        var a = document.createElement("a");
+//        var file = new Blob([text], {type: type});
+//        a.href = URL.createObjectURL(file);
+//        a.download = name;
+//        a.click();
+//    }
+    
+    
+    
+if(navigator.onLine) {
+    var googleSpreadsheet = new GoogleSpreadsheet();
 	googleSpreadsheet.url(url + "&gid=135110459");
 	googleSpreadsheet.load(function (result) {
-		console.log(result);
+		//console.log(result);
 		addInfoList(result,'.info-list');
 		//$('#json').html(JSON.stringify(result));
 	});
 	function addInfoList(infoJSON, infoClass){
 		var strDOM = "";
 		infoJSON.items.forEach(function (it, i, arr) {
-			console.log(it);
+			//console.log(it);
 			strDOM+= '<p class="info-list--elem"><span class="info-list--elem__title">'+it.id+'</span>  '+it.info+'</p>';
 		});
 		$(infoClass).append(strDOM);
 	}
+};
 	//setTimeout(initSlick, 1000);
 	//setTimeout(tabSelect, 1000);
 	/*
+
 	Добавляет страницу таблицы
 	*/
 	function addTableList(timetableJSON, timetableRowClass, id) {
@@ -301,7 +342,6 @@ $(function () {
 			}
 			return string;
 		}
-		console.log($(timetableRowClass));
 		$(timetableRowClass).append(string);
 	}
 	getLanguage("ru");
