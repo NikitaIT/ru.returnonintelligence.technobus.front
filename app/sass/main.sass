@@ -7,6 +7,7 @@
 @import "components/timetable/timetable"
 @import "components/panel/panel"
 @import "components/panel/days"
+@import "components/preloader/preloader"
 
 *::-webkit-input-placeholder
 	color: #666
@@ -83,32 +84,21 @@ body
 		width: 28%
 .text-logo
         padding-top: 7%
-.header
-	//text-align-last: center;
-
-
-
-.slick-slide
-    margin-right: 7px
-    width: 60px
-    height: 28px
-    //margin-top: 10px
 
 #to
     background: $accent-low
     color: $red
-
 #route1
     visibility: hidden
-    position: absolute				
-
-#maps
-    max-width: 520px
+    position: absolute
 #table
     max-width: 755px
     height: auto
 .lang
 	vertical-align: baseline;
+	right: 0px
+	top: 15px
+	position: absolute
 .container,.row,.checkbox-container
     width: auto
 
@@ -118,8 +108,6 @@ body
 
 .row
     margin: 0px
-//max-width: 750px 
-
 
 .line
 	border-color: #000
@@ -128,11 +116,7 @@ body
 	margin: 15px 0 0 0
 	vertical-align: top
 	overflow: hidden
-.lang
-	right: 0px
-	top: 15px
-	position: absolute
-    
+
 .current-time
     color: $red
     font-size: 120%
@@ -151,34 +135,13 @@ body
     
 .description-text-row
     width: 100%
-.preloader
-	position: fixed
-	background-color: #fff
-	z-index: 100
-	top: 0
-	left: 0
-	bottom: 0
-	right: 0
-	overflow: none
-.bus-container
-	line-height: 100vh
-	text-align: center
-.bus
-	opacity: 1
-	transform: translate(-200px, 0)
-	animation: busMove 4s linear infinite
-@keyframes busMove 
-	0 
-		transform: translate(-140px, 0)
-	100% 
-		transform: translate(150px, 0)
-svg:not(:root) 
-    overflow: hidden;
-    vertical-align: middle;
+
 .info-list--elem__title
-    background: $accent
-    border-radius: 4px
-    padding: 3px 6px
+	background: $accent
+	border-radius: 4px
+	padding: 3px 0px
+	margin: 
+		right: 4px
 
 
 @import "media" // Всегда в конце
