@@ -12,6 +12,11 @@ function setLanguage(lang) {
 		});
 });}
 
+UpUp.start({
+  'content-url': 'index.html',
+  'assets': ['/img/technopolis.jpg', '/css/main.min.css', '/lang/en.json', '/lang/ru.json','/js/scripts.min.js'],
+  'service-worker-url': '/upup.sw.min.js'
+});
 
 //    
 //    //Сохранение документа с расписанием

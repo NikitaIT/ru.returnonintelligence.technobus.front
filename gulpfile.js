@@ -42,11 +42,6 @@ gulp.task('js', ['common-js'], function() {
 		'app/libs/jquery/dist/jquery.min.js',
 		'app/libs/jquery-migrate/jquery-migrate.min.js',
 		'app/libs/jquery-google-spreadsheet/jquery.google.spreadsheet.min.js',
-		'app/libs/slick-1.6.0/slick/slick.min.js',
-		'app/libs/jquery.nicescroll/dist/jquery.nicescroll.min.js',
-        'app/libs/on-off-switch/on-off-switch.js',
-        'app/libs/on-off-switch/on-off-switch-onload.js',
-        'app/libs/bootstrap/js/bootstrap.js',
         'app/libs/bootstrap/js/bootstrap.min.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
@@ -94,6 +89,8 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 	var buildFiles = gulp.src([
 		'app/*.html',
 		'app/.htaccess',
+		'app/libs/upup/upup.sw.min.js',
+		'app/libs/upup/upup.min.js',
 		]).pipe(gulp.dest('dist'));
 	
 	var buildLang = gulp.src([
