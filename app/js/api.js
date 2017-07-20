@@ -1,14 +1,14 @@
-/**
- * Модуль работы с гугл таблицами
- * @param   {[[Type]]} function ( [[Description]]
- * @returns {string}   [[Description]]
- */
-$(function () {
+
+$(
+	/**
+	 * Модуль работы с гугл таблицами
+	 */
+	function googleApi() {
 	let url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
 	/**
 	 * Запрашивает с апи гугла таблицу по урлу
-	 * @param {[[Type]]} url Адрес листа таблицы
-	 * @param {[[Type]]} fun Что с ней делает
+	 * @param {string} url Адрес листа таблицы
+	 * @param {function} fun Что с ней делает
 	 */
 	function googleSpreadsheetLoad(url,fun){
 		let googleSpreadsheet = new GoogleSpreadsheet();
@@ -24,7 +24,7 @@ $(function () {
 	/**
 	 * Добавляет информанию из таблицы
 	 * @param {object}   infoJSON  Обьект
-	 * @param {[[Type]]} infoClass Класс в который добавляем
+	 * @param {string} infoClass Класс в который добавляем
 	 */
 	function addInfoList(infoJSON, infoClass){
 		let infoHtmlString = "";
@@ -43,7 +43,6 @@ $(function () {
 	 * @param   {object}   timetableJSON     Data
 	 * @param   {string} timetableRowClass Table DOM class
 	 * @param   {number} id                Table list number
-	 * @returns {string}   [[Description]]
 	 */
 	function addTableList(timetableJSON, timetableRowClass, id) {
 		console.log(`f: addTableList(id=${id}, timetableJSON=`,

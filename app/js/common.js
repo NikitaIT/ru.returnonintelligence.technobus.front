@@ -26,7 +26,6 @@ $(function(){
 });
 /**
  * Модуль установки событий работы с свичём
- * @param {[[Type]]} function ( [[Description]]
  */
 $(function () {
     $(".russian").button('toggle');
@@ -58,13 +57,10 @@ $(function () {
 });
 /**
  * Модуль работы с датой
- * @param   {[[Type]]} function ( [[Description]]
- * @returns {[[Type]]} [[Description]]
  */
 $(function () {
 	/**
 	 * Установка текущей даты, поиск следующей даты в таблице
-	 * @returns {[[Type]]} [[Description]]
 	 */
 	function setDate() {
 		let options = {

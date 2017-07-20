@@ -20,6 +20,7 @@
     "gulp-clean-css": "^3.3.1",
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^3.2.0",
+    "gulp-jsdoc3": "^1.0.1",
     "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-rsync": "0.0.8",

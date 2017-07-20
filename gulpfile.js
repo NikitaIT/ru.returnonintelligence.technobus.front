@@ -13,9 +13,15 @@ var gulp           = require('gulp'),
 		ftp            = require('vinyl-ftp'),
 		notify         = require("gulp-notify"),
 		rsync          = require('gulp-rsync'),
-		babel			= require('gulp-babel');
+		babel			= require('gulp-babel'),
+		jsdoc 			= require('gulp-jsdoc3');
 
 // Скрипты проекта
+
+gulp.task('doc', function (cb) {
+    gulp.src(['README1.md', 'app/js/*.js'], {read: false})
+        .pipe(jsdoc(cb));
+});
 
 gulp.task("common-js", function() {
 	return gulp.src([
