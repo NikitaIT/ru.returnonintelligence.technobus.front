@@ -19,7 +19,7 @@ var gulp           = require('gulp'),
 // Скрипты проекта
 
 gulp.task('doc', function (cb) {
-    gulp.src(['README1.md', 'app/js/*.js'], {read: false})
+    gulp.src(['README.md', 'app/js/*.js'], {read: false})
         .pipe(jsdoc(cb));
 });
 
@@ -33,15 +33,13 @@ gulp.task("common-js", function() {
 			presets: ['env']
 		}))
 	.pipe(concat('common.min.js'))
-	//.pipe(uglify())
+	.pipe(uglify())
 	.pipe(gulp.dest('app/js'));
 });
 
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
-		'app/libs/jquery-migrate/jquery-migrate.min.js',
-		'app/libs/jquery-google-spreadsheet/jquery.google.spreadsheet.min.js',
         'app/libs/bootstrap/js/bootstrap.min.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
@@ -67,7 +65,7 @@ gulp.task('sass', function() {
 	.pipe(sass({outputStyle: 'expand'}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
-	//.pipe(cleanCSS()) // Опционально, закомментировать при отладке
+	.pipe(cleanCSS()) // Опционально, закомментировать при отладке
 	.pipe(gulp.dest('app/css'))
 	.pipe(browserSync.reload({stream: true}));
 });
