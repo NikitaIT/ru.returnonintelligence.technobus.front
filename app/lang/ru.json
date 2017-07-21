@@ -20,6 +20,8 @@
     "fullFriday":	"Пятница",	
     "fullSaturday":	"Суббота",	
     "fullSunday":	"Воскресенье",
+    "xls": "Сохранить в xls",
+    "pdf": "Сохранить в pdf",
     "route_show": "Показать маршрут",
     "route_hide": "Скрыть маршрут" 
 }
