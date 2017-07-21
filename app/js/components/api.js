@@ -174,11 +174,12 @@ $(function googleApi() {
 					//console.log(tableDayName);
 					let minDaysClassNames = "";
 					let daysExtendtion = [...days, "All"];
+					let count = 0
 					for(let i=0;i<tableDayName.length;i++){
-						if(tableDayName[i]=="")  continue;
+						if(tableDayName[i]==""){ count++; continue;}
 						minDaysClassNames += ' day-' + daysExtendtion[i];
 					}
-					if(tableDayName.length==5)minDaysClassNames+= ' day-All';
+					if(count==0)minDaysClassNames+= ' day-All';
 					return minDaysClassNames;
 				}
 			}

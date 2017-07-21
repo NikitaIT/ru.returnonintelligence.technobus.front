@@ -30,7 +30,7 @@ gulp.task("common-js", function() {
 		])
 	.pipe(babel({
 			//plugins: ['transform-runtime'],
-			//presets: ['env']
+			presets: ['env']
 		}))
 	.pipe(concat('common.min.js'))
 	//.pipe(uglify())
