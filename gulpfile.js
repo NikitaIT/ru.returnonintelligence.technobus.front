@@ -12,14 +12,26 @@ var gulp           = require('gulp'),
 		autoprefixer   = require('gulp-autoprefixer'),
 		ftp            = require('vinyl-ftp'),
 		notify         = require("gulp-notify"),
-		rsync          = require('gulp-rsync');
+		rsync          = require('gulp-rsync'),
+		babel			= require('gulp-babel'),
+		jsdoc 			= require('gulp-jsdoc3');
 
 // Скрипты проекта
 
-gulp.task('common-js', function() {
+gulp.task('doc', function (cb) {
+    gulp.src(['README.md', 'app/js/*.js'], {read: false})
+        .pipe(jsdoc(cb));
+});
+
+gulp.task("common-js", function() {
 	return gulp.src([
+		'app/js/components/*.js',
 		'app/js/common.js',
 		])
+	.pipe(babel({
+			//plugins: ['transform-runtime'],
+			presets: ['env']
+		}))
 	.pipe(concat('common.min.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest('app/js'));
@@ -28,18 +40,11 @@ gulp.task('common-js', function() {
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
-		'app/libs/jquery-migrate/jquery-migrate.min.js',
-		'app/libs/jquery-google-spreadsheet/jquery.google.spreadsheet.min.js',
-		'app/libs/slick-1.6.0/slick/slick.min.js',
-		'app/libs/jquery.nicescroll/dist/jquery.nicescroll.min.js',
-        'app/libs/on-off-switch/on-off-switch.js',
-        'app/libs/on-off-switch/on-off-switch-onload.js',
-        'app/libs/bootstrap/js/bootstrap.js',
         'app/libs/bootstrap/js/bootstrap.min.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
-	// .pipe(uglify()) // Минимизировать весь js (на выбор)
+	//.pipe(uglify()) // Минимизировать весь js (на выбор)
 	.pipe(gulp.dest('app/js'))
 	.pipe(browserSync.reload({stream: true}));
 });
@@ -67,7 +72,7 @@ gulp.task('sass', function() {
 
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 	gulp.watch('app/sass/**/*.sass', ['sass']);
-	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
+	gulp.watch(['libs/**/*.js', 'app/js/common.js', 'app/js/components/*.js'], ['js']);
 	gulp.watch('app/*.html', browserSync.reload);
 });
 
@@ -82,6 +87,8 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 	var buildFiles = gulp.src([
 		'app/*.html',
 		'app/.htaccess',
+		'app/libs/upup/upup.sw.min.js',
+		'app/libs/upup/upup.min.js',
 		]).pipe(gulp.dest('dist'));
 	
 	var buildLang = gulp.src([
@@ -126,7 +133,7 @@ gulp.task('rsync', function() {
 	.pipe(rsync({
 		root: 'dist/',
 		hostname: 'nikitait@nikitait.github.io',
-		destination: 'nikitait.github.io/public_html/',
+		destination: 'nikitait.github.io/dist/',
 		archive: true,
 		silent: false,
 		compress: true

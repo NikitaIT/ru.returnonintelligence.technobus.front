@@ -1,12 +1,5 @@
-### …or create a new repository on the command line
+# Расписание автобусов Технополис
 
-echo "# ru.returnonintelligence.technobus.front" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/NikitaIT/ru.returnonintelligence.technobus.front.git
-git push -u origin master
-### …or push an existing repository from the command line
+Проект разработан в рамках учебной практики в компании [Return on Intelligence](http://www.returnonintelligence.ru/) и доступен по [ссылке](https://nikitait.github.io/dist/).
 
-git remote add origin https://github.com/NikitaIT/ru.returnonintelligence.technobus.front.git
-git push -u origin master
+За основу был взят стартовый шаблон [OptimizedHTML](https://github.com/NikitaIT/optimizedhtml-start-template). Добавлена поддержка ES6 с [babel](https://babeljs.io/), и jsdoc3.

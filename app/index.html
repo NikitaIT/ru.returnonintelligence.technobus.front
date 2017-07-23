@@ -77,7 +77,7 @@
 						<div class="time">
 							<h1 class="headline" name="headline"></h1>
 							<p class="description-text-row">
-							<span  name="current_time"></span><time class="current-time">дата и время</time>
+							<time class="current-time">дата и время</time>
 							<span class="day current-time"></span></p>
 						</div>
 						<p class="btn-group lang" data-toggle="buttons">
@@ -87,6 +87,7 @@
 					</header>
 
 				</div>
+				<div class="row"><div class="info-list info-list-xs col-sm-12"></div></div>
 				<div class="row">
 					<div class="col-sm-7 col-xs-12 main__contant">
 						<div class="row">
@@ -106,6 +107,12 @@
 								<div class="timetable__row__all">
 									<!--		if u can add content, use: addTableList()-->
 								</div>
+                            <div class="timetable__header">
+							<div class=" btn-group" data-toggle="buttons">
+										<label class="btn  xls" name="xls"></label>
+										<label class="btn  pdf" name="pdf"></label>
+								</div>
+                            </div>
 							</div>
 						</div>
 					</div>
@@ -118,8 +125,7 @@
 							<div class="text-logo"></div>
 							<p name="bus_part2" class="description-text"></p>
 						</div>
-						<div class="info-list">
-							
+						<div class="info-list info-list-md">
 <!--							addInfoList -->
 						</div>
 						<!--       checkbox start         -->
@@ -130,7 +136,7 @@
 		</div>
   		
     </div>
-    <div class="panel">
+     <div class="panel">
 <!--    	тут дни недели сбоку-->
     </div>
     
@@ -145,6 +151,7 @@
 	  
 	    -->
 		<link rel="stylesheet" href="css/main.min.css">
+		<script src="upup.min.js"></script>
 		<script src="js/scripts.min.js"></script>
 
 </body>

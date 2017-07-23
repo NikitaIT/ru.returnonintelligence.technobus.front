@@ -13,6 +13,15 @@
     "friday":	"Fr",	
     "saturday":	"Sa",	
     "sunday":	"Su",
+    "fullMonday": "Monday",
+    "fullTuesday":	"Tuesday",	
+    "fullTednesday": "Tednesday",	
+    "fullThursday":	"Thursday",	
+    "fullFriday":	"Friday",	
+    "fullSaturday":	"Saturday",	
+    "fullSunday":	"Sunday",
+    "xls": "Save as xls",
+    "pdf": "Save as pdf",
     "route_show": "Show route",
     "route_hide": "Hide route"
 }
