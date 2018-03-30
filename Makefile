@@ -1,7 +1,6 @@
 .PHONY: deploy clean
 
 init: 
-	git checkout --orphan gh-pages && git reset --hard 
 	git checkout master
 
 deploy: 
