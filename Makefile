@@ -4,7 +4,6 @@ init:
 	git checkout master
 
 deploy: 
-	gulp build
 	cd dist && \
 	git add --all && \
 	git commit -m "Deploy to gh-pages11" && \
