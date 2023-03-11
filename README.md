@@ -8,3 +8,5 @@ The starting template [OptimizedHTML](https://github.com/NikitaIT/optimizedhtml-
 - The schedule is synchronized on the website and in the mobile application.
 - The movement of the bus can be seen on the **map**.
 - This is an **offline first** site and mobile application. Works even without internet connection.
+- Localized: Russian and English
+- As a driver, I can report delays in real time. Leave messages under the map with the route.
